@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "emit_adversarial_review",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["items"],
+  "properties": {
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "decision",
+          "corrected_verdict",
+          "confidence",
+          "attacks",
+          "corrections",
+          "recommendations",
+          "human_review"
+        ],
+        "properties": {
+          "id": {"type": "string", "minLength": 1, "maxLength": 24},
+          "decision": {"enum": ["KEEP", "CHANGE"]},
+          "corrected_verdict": {
+            "enum": ["SATISFIED", "VIOLATED", "NOT_FOUND", "UNRESOLVED"]
+          },
+          "confidence": {"type": "integer", "minimum": 0, "maximum": 100},
+          "attacks": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 4,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["claim", "result", "reason", "evidence"],
+              "properties": {
+                "claim": {"type": "string", "minLength": 1, "maxLength": 300},
+                "result": {"enum": ["SURVIVED", "REFUTED", "UNRESOLVED"]},
+                "reason": {"type": "string", "minLength": 1, "maxLength": 400},
+                "evidence": {
+                  "type": "array",
+                  "maxItems": 4,
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": ["path", "start_line", "end_line"],
+                    "properties": {
+                      "path": {"type": "string", "minLength": 1, "maxLength": 300},
+                      "start_line": {"type": "integer", "minimum": 1},
+                      "end_line": {"type": "integer", "minimum": 1},
+                      "symbol": {"type": "string", "maxLength": 160}
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "corrections": {
+            "type": "array",
+            "maxItems": 6,
+            "items": {"type": "string", "minLength": 1, "maxLength": 400}
+          },
+          "recommendations": {
+            "type": "array",
+            "maxItems": 6,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["issue", "work", "acceptance"],
+              "properties": {
+                "issue": {"type": "string", "minLength": 1, "maxLength": 240},
+                "work": {"type": "string", "minLength": 1, "maxLength": 400},
+                "acceptance": {"type": "string", "minLength": 1, "maxLength": 400}
+              }
+            }
+          },
+          "human_review": {"type": "boolean"}
+        }
+      }
+    }
+  }
+}

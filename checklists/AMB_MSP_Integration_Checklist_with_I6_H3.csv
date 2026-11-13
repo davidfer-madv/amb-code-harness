@@ -1,0 +1,316 @@
+AMB MSP Integration Checklist  |  Generic (Canonical v6.5),,,,,,,,,,,
+Detailed reference document: [link to be added by MSP]   |   Version: Canonical v6.5  |  Updated 2026-06-25   |   Review refined: generic requirements from Apple integration review,,,,,,,,,,,
+Item ID,Requirement,Description,Key Considerations,Reference (MSP Integration Guide section),Verification Method,Review Notes,Build Status,Demo Video Readiness Status,Video Demo URL,MA Verified Status,MA Notes
+Section A. Pre-registration and MSP onboarding,,,,,,,,,,,
+A.1,Register at register.apple.com,Create the MSP organisation profile on Apple Business Register and begin the MSP onboarding lifecycle.,"register.apple.com is the only entry point. The Apple Business Register account that owns the MSP profile is distinct from any Apple Developer account the MSP also needs for Apple Pay; do not conflate the two. The organization primary contact in Apple Business Register must be a legal representative of that organization, using a corporate email address, with admin access. The MSP may be listed as a team member on the organization account.
+Also fill in the MSP Requirement Document Template","Reference:
+- p. 5 | Chapter 2: Getting Approved, The Registration and Review Process > 2.1 Apple Business Register",Apple Supplied,Focus area during the review,,,,,
+A.2,Pass capability and go-to-market review,Submit the Phase 1 platform capability assessment and the go-to-market plan to Apple's regional AMB team for review.,"Apple's regional AMB team is the gatekeeper. Be ready to justify automation coverage, agent availability, brand pipeline, and pricing posture. Phase 1 is the gate; Phase 2 and Phase 3 unlock additional capability tiers later.","Reference:
+- p. 5 | Chapter 2 > 2.2 What Apple Expects from an Approved MSP
+- p. 6 | Chapter 2 > 2.4 The Experience Review, Apple's Pre-Launch Gate
+Note:
+- the guide does not use the exact phrase ""go-to-market plan."" ",3 Way Meeting,Might have questions about the topic,,,,,
+A.3,Receive Apple API credentials,Obtain the MSP ID (also called CSP-ID) and the Messaging API secret key from Apple after onboarding is approved.,"The MSP ID is the value carried in iss (MSP to Apple) and aud (Apple to MSP) on every JWT. The secret key signs every outbound JWT. Treat the secret as production credential material; do not commit, log, or share across environments.","Reference:
+- p. 5 | Chapter 2 > 2.1 Apple Business Register
+- p. 8 | Chapter 3: JWT Authentication > 3.1 JWT Structure
+- p. 9 | Chapter 3 > 3.3 Key Management",Apple Supplied,Fine with Messaging Advisory Checking it,,,,,
+A.4,Confirm Phase 1 platform capability requirements,"Verify your platform meets every item in Apple's Phase 1 capability matrix (bot builder, message templates, attachment handling, capability detection, agent console, etc.) before booking the Phase 1 demo.","Phase 1 has a fixed capability checklist. Gaps surface late and cost weeks; pre-validate every item against the current build state, not against the planned end-state.","Reference:
+- p. 5 | Chapter 2 > 2.2 What Apple Expects from an Approved MSP",3 Way Meeting,This is required but not needed for the review ,,,,,
+A.5,Plan multi-day approval dependencies,"Apple Developer account enrolment, Apple Pay Merchant ID, Payment Processing Certificate, OAuth endpoint approval, and the iMessage app demo all have multi-day lead times that block Phase 1 sign-off.","Apple Developer account enrolment, Apple Pay Merchant ID, Payment Processing Certificate, OAuth endpoint approval, and the iMessage app demo all have multi-day lead times that block Phase 1 sign-off. If a third party processor is the merchant of record for an existing payments product, a separate Apple Developer enrolment is still required for AMB Apple Pay. The brand (merchant) holds the Apple Developer account and Apple Pay Merchant ID and shares the certificates with the MSP; the MSP does not need the processor's enrolments","Reference:
+- p. 53 | Chapter 18: Apple Pay > 18.1 Prerequisites
+- p. 59 | Chapter 20: OAuth 2.0 Authentication Messages > 20.1 Requirements for the New Flow
+- p. 66 | Chapter 21: App Clips and iMessage Apps > 21.3 Prerequisites
+- p. 10 | Chapter 4: Development, Staging, and Production Environments > 4.4 The Experience Review as a Gate Between Staging and Production
+Note:
+- the guide mentions Apple Developer account, Merchant ID/domain/PEM settings, OAuth EV/callback setup, and iMessage App prerequisites, but not the exact phrase ""Payment Processing Certificate"" or a separate OAuth endpoint approval timeline",Postman or Test Code,,,,,,
+A.6,Honour the pre-launch advertising embargo,"Until Apple grants public launch, no marketing, screenshots, brand mentions, or capability claims may appear in any public channel.","Embargo covers website, decks, social, partner comms, and press. Breach can delay or revoke launch approval. Internal-only material is permitted; external is not.",,Verbal on Apple Policy,,,,,,
+Section B. Core API transport layer,,,,,,,,,,,
+B.1,Implement the eight MSP REST API endpoints,"Implement all eight documented endpoints: outbound /message, inbound /message, /preDownload, /preUpload, the returned upload URL, /decodePayload, /authenticate, and /constructPayload.",All endpoints under mspgw.push.apple.com use HTTPS. The inbound /message endpoint is hosted by the MSP at a URL registered with Apple; the rest are Apple-hosted. /constructPayload is required even if App Clips RichLinks are not heavily used.,"Reference:
+- p. 20 | Chapter 7: API Endpoints Reference",Postman,,,,,,
+B.2,Implement HS256 JWT signing with 1-hour rotation,Sign every outbound request with an HS256 JWT using the Messaging API secret. iat must be within the last hour at the receiving end.,"alg is fixed at HS256. iss is the MSP ID on outbound; aud is the MSP ID on inbound (from Apple). Apple rejects tokens with iat older than 1 hour, so cache and rotate tokens accordingly. Reject inbound JWTs that fail signature, iat freshness, or aud match.","Reference:
+- p. 8 | Chapter 3: JWT Authentication > 3.1 JWT Structure
+- p. 8 | Chapter 3 > 3.2 Token Lifetime and Rotation
+- p. 9 | Chapter 3 > 3.3 Key Management",Postman,,,,,,
+B.3,Set every required HTTP header on every outbound message,"Populate Authorization, id, Source-Id, Destination-Id, Content-Type, and the message-type-specific headers (e.g. interactive headers, attachment headers) on every outbound request.",Headers are message-type dependent. Interactive messages require additional headers above the standard set. Attachment flows require the encryption headers on /preUpload and /preDownload. Missing headers cause the message to be rejected silently in some cases.,"Reference:
+- p. 13 | Chapter 5: HTTP Headers > 5.1 Standard Headers (All Messages)
+- p. 13 | Chapter 5 > 5.2 Interactive Message Headers (Additional)",Provide Code,,,,,,
+B.4,Populate the common HTTP body fields correctly,"Every outbound message body must carry the common fields (id, sourceId, destinationId, type, plus the type-specific payload).","id must be a unique UUID per message. sourceId / destinationId carry opaque user identifiers, never phone numbers or emails. Reuse of id is treated as a replay and rejected.","Reference:
+- p. 17 | Chapter 6: Message Structure, The Core JSON Body > 6.1 Common Body Fields",Provide Code,,,,,,
+B.5,Implement GZIP request body handling on inbound,Inbound webhook requests from Apple may arrive gzip-compressed. The MSP must decompress before parsing.,Inspect Content-Encoding: gzip and decompress before JSON parsing. Failing to handle this surfaces as intermittent body-parse errors only under load.,"Reference:
+- p. 21 | Chapter 8: Sending and Receiving Text Messages > 8.1 Receiving Messages from Users",Postman,,,,,,
+B.6,Implement the 5-step inbound message validation,"Every inbound request must pass: JWT signature verification, JWT iat freshness check (within 1 hour), required header presence, body schema validation, and id uniqueness / replay protection.",Apple expects all five checks. Failure to enforce iat freshness or id uniqueness is a common review finding. Keep a short-window id replay cache (1 hour matches the iat window).,"Reference:
+- p. 21 | Chapter 8 > 8.1 Receiving Messages from Users
+- p. 8 | Chapter 3: JWT Authentication > 3.1 JWT Structure and 3.2 Token Lifetime and Rotation
+Note:
+- the guide covers the validation sequence but does not explicitly document an `id` replay cache requirement",Postman,,,,,,
+B.7,Restrict inbound ingress to 17.0.0.0/8,Apple's webhook traffic originates from the 17.0.0.0/8 CIDR. Restrict the inbound /message endpoint to that range at the edge.,"Apply at the WAF or load balancer, not inside the application. 17.0.0.0/8 is an Apple-owned block but is large; combine with JWT verification for defence in depth.",,Postman,,,,,,
+B.8,Honour the Opaque ID identity model,"sourceId and destinationId on organic AMB are opaque tokens issued by Apple. Never treat them as, transform them into, or persist them alongside, real-world identifiers (phone, email, customer ID) outside of an authenticated linkage.","Opaque IDs are stable per user-brand pair but are not reversible. Logging or analytics pipelines that flatten sourceId into a join key against PII break Apple's privacy contract. Account linking happens via the channel settings landing page, not via id parsing.","Reference:
+- p. 88 | Chapter 27: Security and Privacy > 27.1 The Opaque ID",Provide Code,,,,,,
+Section C. Required features,,,,,,,,,,,
+C.1,Receiving and Sending Messages,"Send and receive plain text, international characters, and emojis in both directions.","UTF-8 throughout. Validate that emoji surrogate pairs survive serialisation in the agent console, mobile SDK (if any), and logs. Required for both bot and live agent.
+
+Note: If you plan to use symbols, please use Apple approved symbols from here: https://developer.apple.com/sf-symbols/","Reference:
+- p. 21 | Chapter 8: Sending and Receiving Text Messages > 8.1 Receiving Messages from Users
+- p. 24 | Chapter 8 > 8.2 Sending Messages to Users
+- p. 17 | Chapter 6 > 6.1 Common Body Fields",Postman,,,,,,
+C.2,Receiving and Sending Attachments and wallet passes,Send and receive attachments up to 100 MB using the /preUpload and /preDownload flows with AES-CTR per-attachment encryption.,"100 Mb is a hard ceiling per attachment. Encryption is mandatory and uses a per-attachment symmetric key transported in the message body, not in HTTP headers. Use the self-test vectors in the spec to validate the crypto end to end before submitting for review.
+
+Note: Maximum file size is 100Mb but Apple does not block the message just it fails. You as an MSP must block anf filter to be sent those messages 
+
+100 MB is a hard ceiling per attachment. Apple publishes no size-specific error and no 413 status, and the MSP operates the upload flow, so the MSP must validate file size in its own tool before uploading. For larger files, use an external secure surface and send a Rich Link instead of embedding.","Reference:
+- p. 30 | Chapter 10: Attachments > 10.1 Constraints
+- p. 30 | Chapter 10 > 10.2 Supported File Types
+- p. 31 | Chapter 10 > 10.3 Uploading Attachments (Outbound)
+- p. 31 | Chapter 10 > 10.4 Downloading Attachments (Inbound)
+- p. 57 | Chapter 19: Wallet Pass Delivery > 19.2 Sending a Wallet Pass",UX Testing,Includes wallet passes; up to 100 MB via /preUpload and /preDownload with AES CTR per attachment encryption.,,,,,
+C.3,Tapback Reactions,"Detect inbound user tapbacks (Loved, Liked, Disliked, Laughed, Emphasized, Questioned) including on interactive payloads, plus stickers and emoji reactions.","""Tapbacks are inbound only; the MSP does not send outbound tapbacks. Each reaction arrives as an ordinary text message with its own new id and carries no original message id, so it cannot be threaded to a specific message. Correlation is best effort from the body text only: standard reactions quote the original text, and interactive-message reactions collapse to 'Liked 1 Business Message', which identifies no specific message. Parsing is locale dependent. Per Apple, display the received text as is.","Reference:
+- p. 35 | Chapter 12: Tapback Reactions > 12.1 Standard Tapbacks, 12.2 Emoji Reactions, 12.3 Stickers and Memojis, 12.4 Reactions to Interactive Messages",Postman,,,,,,
+C.4,Receiving Leave Conversation Messages,"When the user leaves the conversation, notify both the live agent and any automated agent, and stop sending further messages on that thread.",Leave Conversation is a hard stop. Any outbound after this point is a policy violation and may also be rejected by Apple. The bot or agent must be informed so it does not queue follow-ups. You have to demonstrate how the platform blocks those messages if the user left or send a STOP for example,"Reference:
+- p. 76 | Chapter 24: Response Codes and Error Handling > 24.2 Handling 410, Leave Conversation
+- p. 76 | Chapter 24 > 24.3 Receiving and Handling the Close Event
+- p. 73 | Chapter 22: Invitation Messages > 22.5 The CloseSession Webhook (Leave Conversation)",Postman,,,,,,
+C.5,Rich Link Messages,"Every URL sent by an automated or human agent should be sent as a rich link with title, image, and URL, rather than as bare text. Needs to render all examples ","Apple expects rich link rendering for all URLs, not just marketing links. Auto-generated rich links have specific image and metadata requirements; meet them or supply a manually constructed RichLinkData payload.","Reference:
+- p. 26 | Chapter 9: Rich Links, Every URL, Every Time
+- p. 27 | Chapter 9 > 9.1 Rich Link Payload Structure
+- p. 27 | Chapter 9 > 9.2 Image Requirements
+- p. 27 | Chapter 9 > 9.4 Auto-Generating Rich Links from URLs
+- p. 28 | Chapter 9 > 9.5 Apple Maps Rich Links",Postman,MA: Add Fallback Information,,,,,
+C.6,Quick Reply Messages,Send a single-select interactive picker with two to five items. (AT least two options,"Constraint: 2 to 5 items inclusive. Use Quick Reply for short, mutually exclusive choices; use List Picker when more than 5 options or icons/sections are needed.","Reference:
+- p. 38 | Chapter 14: Quick Reply Messages
+- p. 38 | Chapter 14 > 14.1 Constraints
+- p. 40 | Chapter 14 > 14.2 Payload Structure
+- p. 41 | Chapter 14 > 14.3 Response Payload",Postman,,,,,,
+C.7,List Picker Message,"Support single-select, multi-select, multi-section, icons, and images on both sent and received list pickers.","Cover the matrix of variants in the Phase 1 demo, not just the simplest case. Icons and images have separate size and format constraints; meet both.","Reference:
+- p. 42 | Chapter 15: List Picker Messages
+- p. 42 | Chapter 15 > 15.1 Structure Overview
+- p. 43 | Chapter 15 > 15.2 Images
+- p. 43 | Chapter 15 > 15.3 Multi-Select and Multi-Section
+- p. 44 | Chapter 15 > 15.5 Response Payload",Postman,,,,,,
+C.8,Time Picker Message,"Send a time picker with multiple time slots, optional location information, and icons.","Time slots, locations, and icons are all expected in the demo. Time zones must be handled correctly; surface the agent or bot's intended zone explicitly in the payload.","Reference:
+- p. 45 | Chapter 16: Time Picker Messages
+- p. 45 | Chapter 16 > 16.1 Key Fields
+- p. 46 | Chapter 16 > 16.2 Response Handling
+- p. 46 | Chapter 16 > 16.3 Send Payload
+- p. 47 | Chapter 16 > 16.4 Response Payload",Postman,,,,,,
+C.9,Apple Pay Message,"Send Apple Pay payment requests with merchant session handoff, ApplePayPaymentRequest payload, line items, shipping methods, and refund handling.Apple Pay requires the Merchant ID registered on the AMB account before sending a request","For testing,  MSP must have a brand that holds its own Apple Developer account and Apple Pay Merchant ID, not the third-party payment processor's. Payment Processing Certificate enrolment is multi-day. Refunds are handled in a workflow outside Messages for Business. Refund handling is not an in-band AMB feature and is not required within the Apple Pay message
+
+The brand (merchant) owns the Apple Developer account and Apple Pay Merchant ID and shares the Payment Processing Certificate with the MSP. The MSP does not need to hold the processor's enrolments.
+
+Role split: Apple tokenizes the card and issues the merchant session; the MSP transports and authenticates the messages and routes them to the configured endpoints; the brand's own payment gateway and PSP process the charge. Apple Pay in AMB is the presentment and tokenization layer, not the processor. 
+
+Prerequisites: Apple Developer account and Apple Pay Merchant ID configured
+Merchant ID must be on the AMB account first.","Reference:
+- p. 52 | Chapter 18: Apple Pay
+- p. 53 | Chapter 18 > 18.1 Prerequisites
+- p. 53 | Chapter 18 > 18.2 Payment Request Payload
+- p. 55 | Chapter 18 > 18.3 Payment Endpoint Timeouts
+- p. 55 | Chapter 18 > 18.4 Payment Authorisation Response",Postman,,,,,,
+C.10,Authentication Message (new OAuth 2.0),"Implement the new inline OAuth 2.0 authentication flow, including Password AutoFill and channel settings registration of the OAuth endpoint.","The new OAuth flow is required; the legacy flow has been deprecated since February 2023 and must not be implemented. Endpoint registration with Apple is a separate multi day step.
+
+Note: For the demo you have to send a context message to the user and then the Authentication Rich Card before trigger the flow","Reference:
+- p. 59 | Chapter 20: OAuth 2.0 Authentication Messages
+- p. 59 | Chapter 20 > 20.1 Requirements for the New Flow
+- p. 60 | Chapter 20 > 20.2 Initiating the Flow
+- p. 60 | Chapter 20 > 20.3 OAuth Completion Callback
+- p. 61 | Chapter 20 > 20.4 Password AutoFill Support
+- p. 83 | Chapter 25 > 25.1 Settings Reference",Postman,MA: ensure the card calling OAuth is included in the flow.,,,,,
+C.11,iMessage Apps (custom InteractiveData),Support custom iMessage apps using the CustomInteractiveData dictionary with the bid field identifying the iMessage app bundle.,"Phase 1 demo gate. The bid value identifies a specific Apple-approved iMessage app bundle; the demo must use a real, approved bid, not a placeholder.
+To use an example use this: https://register.apple.com/resources/messages/msp-api-tutorial/imessage-apps
+
+Note: For the appId, for testing purposes with the sample app, since it is not published on the App Store, you can use any integer as a placeholder, the gateway does not validate this field. For example, 123456789 works fine.
+
+Regarding production vs sandbox:
+The sample app referenced in the tutorial is intended for testing the mechanics of a custom iMessage App integration. If you want a custom iMessage App experience in production, you would need to develop and publish your own iMessage App Extension to the App Store","Reference:
+- p. 66 | Chapter 21: App Clips and iMessage Apps > 21.2 When to Use iMessage Apps
+- p. 66 | Chapter 21 > 21.3 Prerequisites
+- p. 67 | Chapter 21 > 21.4 CustomInteractiveData Fields
+- p. 67 | Chapter 21 > 21.5 The bid Field for Custom iMessage Apps
+- p. 68 | Chapter 21 > 21.6 Minimal Payload Example
+- p. 68 | Chapter 21 > 21.7 Constraints",Postman,,,,,,
+C.12,Form Message,"Support all types, splash, salect with images, (one and several selections).  text input, picker, switch, date picker, and summary.","Form Message requires iOS 18.4 or later. Fallback (Quick Reply, List Picker, Time Picker, or plain text) is required for pre-iOS-18.4 devices, not optional. Drive the fallback from the parsed capability-list per device.
+Note: Confirm ""Review"" button has to go at the end of the final section to be filled.","Reference:
+- p. 48 | Chapter 17: Form Messages
+- p. 49 | Chapter 17 > 17.1 Version Fields
+- p. 49 | Chapter 17 > 17.2 Top-Level Payload Structure
+- p. 49 | Chapter 17 > 17.3 Page Types
+- p. 51 | Chapter 17 > 17.4 Form Response Payload
+- p. 52 | Chapter 17 > 17.5 Fallback for Devices Without FORM
+- p. 52 | Chapter 17 > 17.6 Constraints",Postman,,,,,,
+"C.13 a,b,c",Construct Payload API,"Use /constructPayload to generate App Clips (a), Apple Maps (b), and Apple Music (c) RichLink payloads server side from a URL. Each of the three payload types must be demonstrated.","Required even if these RichLink types are not a primary surface for the brand. The API is the only supported way to construct the payload; do not assemble it client side. All three types (App Clips, Apple Maps, Apple Music) are in scope and each must be demonstrated. The demonstration must use a working App Clip URL as evidence.
+One example is: https://firigames.com/phoenix2
+
+Apple Music is a Construct Payload rich link built server side via /constructPayload from a music.apple.com URL. Supported content types: Song, Album, Artist, Playlist, Music Video, Radio Station. Match the storefront to the user by constructing the URL dynamically from the incoming message's locale rather than hardcoding a country code, so full rendering including the play button works. It is one of three Construct Payload types (App Clips, Apple Maps, Apple Music) that each must be demonstrated for Apple review.","Reference:
+- p. 63 | Chapter 21: App Clips and iMessage Apps > 21.1 The Construct Payload API: App Clips, Apple Music, and Apple Maps
+- p. 20 | Chapter 7: API Endpoints Reference
+- p. 28 | Chapter 9 > 9.5 Apple Maps Rich Links
+Note:
+- Apple Music construct-payload support is now documented in 21.1 (Supported URL Types); the earlier note that no Apple Music reference existed no longer applies",UX Testing,"Three sub-checks: App Clips, Apple Maps, Apple Music, each demonstrated.",,,,,
+C.14,Typing Indicator Message,"Show typing indicators in both directions (inbound from user, outbound from agent or bot). A typing indicator must be displayed before every message type, text or interactive.","Bidirectional. A typing indicator must precede every outbound message regardless of type. For messages sent by bots and for messages in sequence, use a 1 second typing indicator before each message. The outbound typing indicator times out after 60 seconds; refresh or stop accordingly. Sequencing rules apply when interleaved with regular messages.","Reference:
+- p. 33 | Chapter 11: Typing Indicators
+- p. 33 | Chapter 11 > 11.1 Inbound (Apple → MSP)
+- p. 33 | Chapter 11 > 11.2 Outbound (MSP → Apple)
+- p. 34 | Chapter 11 > 11.3 Timeout
+- p. 25 | Chapter 8 > 8.3 Message Ordering",Postman,Not auto green: Postman plus UX proven. A 1 second indicator must precede every message including back to back. 60 second refresh tracked under H.2 (section 8.3).,,,,,
+C.15,Routing based on entry point parameters,"Use the intentID and groupID attributes on inbound conversation-start messages to route to the correct queue, bot flow, or agent skill.","BCRW (bcrw.apple.com) is the Business Chat era redirect endpoint that turns a URL into a Messages for Business conversation: https://bcrw.apple.com/urn:biz:<business-id>, with optional query parameters biz-intent-id, biz-group-id, and body. On the first inbound message, the MSP reads the intent and group to route the conversation. Parameter values must not contain reserved URI characters (& # [] () {} and /). Note: Apple does not publish the full BCRW acronym expansion, so describe it by function rather than asserting one","Reference:
+- p. 37 | Chapter 13: Routing with Intent IDs and Group IDs > 13.1 Fields
+- p. 82 | Chapter 23: Entry Points and Message Suggest > 23.2 URL Parameters",UX Testing,,,,,,
+C.16,Channel Settings and Landing Page,Centrally host the brand's channel settings endpoint and a landing page that displays privacy policy and terms of use and supports account linking.,"Channel settings endpoint is per brand and registered with Apple. Landing page must show Privacy Policy and Terms of Use prominently, and must support OAuth account linking where used. The client landing page is required and must be reachable via the Connect button in Apple Business Register, under Test your Messaging Service Provider connection. The page should let the client understand setup, get support, and confirm the MSP connection.","Reference:
+- p. 83 | Chapter 25: Channel Settings and Landing Page
+- p. 83 | Chapter 25 > 25.1 Settings Reference
+- p. 85 | Chapter 25 > 25.2 The Landing Page
+Note:
+- the master guide does not explicitly mention Privacy Policy or Terms of Use display on this page",UX Testing,,,,,,
+C.17,Device Capabilities,Parse the per-device capability-list on every inbound and provide alternate handling for unsupported features.,"capability-list is per device, not per user. Cache against destinationId. Drives Form Message gating, Invitation eligibility, and any future feature behind a capability flag.","Reference:
+- p. 13 | Chapter 5: HTTP Headers > 5.3 The capability-list Header and Device Capability Detection
+- p. 4 | Chapter 1: What Is Apple Messages for Business? > 1.4 Device Compatibility
+- p. 10 | Chapter 4 > 4.3 Testing Interactive Message Types",Postman,,,,,,
+C.18,Invitation Messages,"Send business-initiated notification messages using Apple-managed templates to opted-in users, addressed by phone number.","Covered fully in the generic AMB Entry Points Primer; restated here only to preserve the count and flag the divergent phone number identity model (organic AMB uses opaque IDs) and the different 410 Gone semantic (on Invitations, 410 means the request is missing or has an incorrect message-type header. User opt-out arrives as a separate inbound message, and undeliverable-by-user-preference is a 404.). Requires separate gated Apple approval; iOS 18.0 / macOS 15.0 minimum. Define the handling when the user declines the invitation (taps No), and confirm whether invitations can be sent via bulk upload.","Reference:
+- p. 69 | Chapter 22: Invitation Messages
+- p. 69 | Chapter 22 > 22.1 What Makes Invitations Fundamentally Different
+- p. 70 | Chapter 22 > 22.2 The Template System
+- p. 70 | Chapter 22 > 22.2a Published Templates (as of March 2026)
+- p. 71 | Chapter 22 > 22.3 Sending an Invitation
+- p. 72 | Chapter 22 > 22.4 Opt-In Requirements
+- p. 73 | Chapter 22 > 22.5 The CloseSession Webhook (Leave Conversation)
+- p. 73 | Chapter 22 > 22.7 Response Codes for Invitation Messages",Postman,,,,,,
+C.19,"After the user closes the conversation, the agent must be blocked from sending until the user restarts it","When the user closes the conversation, AMB sends a close message to the MSP platform. The platform must block any agent, human or bot, from sending further messages until the user restarts the conversation.",No typing or sending after close. Restore the agent send path only when the user restarts the conversation. Confirm the close message is received and that the send block is enforced across the platform.,"Reference:
+- p. 76 | Chapter 24 > 24.2 Handling 410, Leave Conversation
+- p. 76 | Chapter 24 > 24.3 Receiving and Handling the Close Event",UX Testing,,,,,,
+C.20,"Channel Settings must capture brand-specific config for Apple Pay, iMessage App and Authentication payloads","Brand config for Apple Pay, iMessage App, Auth. ",,"Reference:
+- p. 83 | Chapter 25 > 25.1 Settings Reference
+- p. 53 | Chapter 18 > 18.1 Prerequisites
+- p. 66 | Chapter 21 > 21.3 Prerequisites
+- p. 59 | Chapter 20 > 20.1 Requirements for the New Flow",,,,,,,
+C.21,Brands must have a GUI to create and edit rich objects without writing JSON or code,"List/Time Picker, Quick Reply, Form. Demo expected. ",To discuss but basically is like Chatwoot for example ,"Reference:
+- p. 5 | Chapter 2 > 2.2 What Apple Expects from an Approved MSP",UX Testing,,,,,,
+C.22,The Client Landing Page must be demonstrated via the 'Connect' button in the AMB account,Start from 'Connect' in the AMB account; test account OK. ,,,UX Testing,,,,,,
+Section D. Device capability detection and payload gating,,,,,,,,,,,
+D.1,Parse capability-list on every inbound,Extract the capability-list array from every inbound message and persist it against the destinationId / sourceId for use on the next outbound.,"Capabilities can change between messages (user switches device). Always use the most recent value, not a cached one from initial conversation start.","Reference:
+- p. 13 | Chapter 5: HTTP Headers > 5.3 The capability-list Header and Device Capability Detection",Postman,,,,,,
+D.2,Maintain an OS-minimum / device-scope matrix,"Maintain a matrix mapping each interactive feature to its minimum OS version and supported device scope (iPhone, iPad, Mac, Watch).
+Note: (watchOS has no published row); Forms and iMessage apps are iPhone and iPad only.","Examples: Form Message is iOS 18.4 or later, Invitations require iOS 18.0 or later. Update the matrix whenever Apple ships new feature OS floors. Drive the bot's branch logic and the agent console's affordance lock from this matrix.","Reference:
+- p. 4 | Chapter 1 > 1.4 Device Compatibility
+- p. 10 | Chapter 4 > 4.3 Testing Interactive Message Types
+- p. 13 | Chapter 5 > 5.3 The capability-list Header and Device Capability Detection",Provide Code,,,,,,
+D.3,Agent console capability lock,The agent console must disable or hide UI affordances for any feature the recipient device does not support.,"Hard-disable, not warn-and-allow. An agent should not be able to send a Form Message to an iOS 17 device by accident.","Reference:
+- p. 14 | Chapter 5 > 5.3 The capability-list Header and Device Capability Detection, What Your Platform Must Do",UX Testing,,,,,,
+D.4,Bot or automation capability switcher,"Bot flows must include a capability-aware branch that swaps Form Message for Quick Reply, List Picker, Time Picker, or plain text when the recipient cannot render the preferred type.","Switching must happen at send time, using the most recent capability-list, not at flow-design time. Apple expects this to be demonstrated end to end in Experience Review.","Reference:
+- p. 16 | Chapter 5 > 5.3 The capability-list Header and Device Capability Detection, Fallback Strategy
+- p. 52 | Chapter 17 > 17.5 Fallback for Devices Without FORM",UX Testing,,,,,,
+D.5,Fallback decision tree,"Document and implement a fallback decision tree for every interactive message type: preferred type, fallback type or sequence of types, and user-facing copy variants.","Tree is per feature and per OS floor. Keep it versioned. Reviewers may ask to see the tree itself, not just its outputs. Document the explicit fallbacks: when Form is absent, send each question as a separate object; convert Select or Picker pages to a Quick Reply with up to 5 options, or a List Picker for longer lists; use a Time Picker in place of a Date Picker; send Input pages as a text message. The same use case must complete on a device that does not support the preferred feature.","Reference:
+- p. 16 | Chapter 5 > 5.3 The capability-list Header and Device Capability Detection, Fallback Strategy
+- p. 52 | Chapter 17 > 17.5 Fallback for Devices Without FORM",Provide Code,,,,,,
+"Section E. Policy, consent, conversational design",,,,,,,,,,,
+E.1,Live agent availability (or exemption),"By default, a live human agent must be available during stated business hours. The exemption to this rule is granted only by Apple's regional AMB team on a case by case basis.","If no exemption is granted, the agent escalation path must reach a real human within business hours. If an exemption is granted, Section F replaces this with structured callback or email via form options.","Reference:
+- p. 86 | Chapter 26: Policy and Compliance > 26.1 Live Agent Requirement
+- p. 6 | Chapter 2 > 2.3 Brand Onboarding Checklist
+Note:
+- no live-agent exemption process is documented in the master guide",Verbal on Apple Policy,,,,,,
+E.2,Bot and automation rules,"The bot must identify itself as automated, must not impersonate a human, and must always provide a path to escalation (human or, under exemption, callback or email).",Apple reviewers test this with explicit prompts (e.g. 'are you a bot?'). The bot must answer truthfully.,"Reference:
+- p. 86 | Chapter 26 > 26.1 Live Agent Requirement
+- p. 13 | Chapter 5 > 5.1 Standard Headers (All Messages), `auto-reply` header
+Note:
+- the guide does not explicitly say bots must identify themselves or answer ""are you a bot?"" prompts",Verbal on Apple Policy,,,,,,
+E.3,Messaging restrictions,"No SMS-style marketing blasts. No unsolicited outbound. Outbound is permitted only as part of an ongoing user-initiated conversation, or via approved Invitation Message templates.",Approved Invitation templates are the only sanctioned business-initiated message path; everything else is reactive. Reviewers actively look for unsolicited outbound.,"Reference:
+- p. 86 | Chapter 26 > 26.2 Messaging Restrictions
+- p. 69 | Chapter 22: Invitation Messages
+- p. 70 | Chapter 22 > 22.2 The Template System
+- p. 73 | Chapter 22 > 22.6 Transactional Notifications Within Active Conversations",Verbal on Apple Policy,,,,,,
+E.4,Consent rules,Capture explicit opt-in for any non-transactional automated notifications. Persist consent source and timestamp.,"Consent is per brand, per channel, per notification category. The MSP platform must surface the consent state to brand operators and to bot flows.","Reference:
+- p. 86 | Chapter 26 > 26.3 Consent Requirements
+- p. 72 | Chapter 22 > 22.4 Opt-In Requirements
+- p. 73 | Chapter 22 > 22.6 Transactional Notifications Within Active Conversations",Verbal on Apple Policy,,,,,,
+E.5,Opt-out and Leave Conversation handling,"Honour both the in-band Leave Conversation message and the conventional opt-out trigger words (STOP, UNSUBSCRIBE, QUIT). Both bot and live agent must stop sending immediately.","Trigger words are case-insensitive. Stop applies to the brand, not just the current thread. Re-engagement after opt-out requires a fresh opt-in.","Reference:
+- p. 76 | Chapter 24 > 24.2 Handling 410, Leave Conversation
+- p. 76 | Chapter 24 > 24.3 Receiving and Handling the Close Event
+- p. 73 | Chapter 22 > 22.5 The CloseSession Webhook (Leave Conversation)
+- p. 86 | Chapter 26 > 26.4 Trigger Words",Verbal on Apple Policy,,,,,,
+E.6,Trigger words,"Implement Apple's trigger word matrix (HELP, STOP, AGENT, REPRESENTATIVE, and similar). Each maps to a defined behaviour: escalate, opt out, or contextual help.",Default behaviour matrix is published by Apple. Brands may extend but not weaken it. Case-insensitive matching; allow leading or trailing whitespace.,"Reference:
+- p. 86 | Chapter 26 > 26.4 Trigger Words",Verbal on Apple Policy,,,,,,
+E.7,PII request protocol,"Never request sensitive PII (full Social Security Number, full card number, government ID number, account password) in plain conversation. Use Authentication Message, Apple Pay Message, or Form Message instead.",This is a hard rule. Agent console templates must enforce it; bot flows must route any such collection to the appropriate secure message type.,,Verbal on Apple Policy,,,,,,
+E.8,Brand privacy and Terms of Use display,The brand's Privacy Policy and Terms of Use must be reachable from the AMB landing page and from the conversation entry context.,Display is via the channel settings landing page. The conversation itself should not reproduce policy text in chat; it should link out to the canonical hosted page.,,Verbal on Apple Policy,,,,,,
+E.9,Forbidden in-conversation language,"Do not use 'iMessage', 'Apple Messages', or wording that implies Apple endorses the brand, inside conversation copy or templates.","Reviewers screen template and bot copy for these terms. Use generic terms ('message us', 'chat') instead.",,Verbal on Apple Policy,,,,,,
+E.10,Conversational design and agent etiquette,"Follow Apple's conversational design guidelines: greeting, agent or bot identification, stated hours, response-time expectations, clear handoff language, and notification opt-in phrasing where applicable.","Section §27.9 has detailed subsections covering live agent protocols, automated messaging, triage best practices, response quality, opt-in language, and satisfaction surveys. Treat the whole §27.9 as in-scope for the demo.","Reference:
+- p. 6 | Chapter 2 > 2.4 The Experience Review, Apple's Pre-Launch Gate
+- p. 7 | Chapter 2 > 2.4 Non-Negotiable Requirements",Verbal on Apple Policy,,,,,,
+Section F. Human escalation under live-agent exemption. Applicable only if a live-agent exemption has been granted by Apple. Default deployments must provide a live human agent during business hours.,,,,,,,,,,,
+F.1,Detect escalation intent,"The bot or its NLU layer must classify both trigger words (AGENT, REPRESENTATIVE) and free-text intent signalling that the user wants a human (e.g. 'talk to a person', 'this isn't helping').",Trigger word matching is deterministic; free-text intent uses the bot's NLU. False negatives are worse than false positives here; err toward escalation.,"Reference:
+- p. 86 | Chapter 26 > 26.1 Live Agent Requirement
+- p. 86 | Chapter 26 > 26.4 Trigger Words",Verbal on Apple Policy,,,,,,
+F.2,Present a callback or email choice,"On escalation, present the user with a structured choice between a callback request and an email reply (collected via Form Message).","Use Quick Reply for the binary choice; collect the supporting details (phone number, email, message) via Form Message with fallback to List Picker or plain text on older devices. The in channel handoff must be as seamless as possible; where a live agent is not available, the bot assists the user in composing and sending an email to the brand from within the conversation.",,UX Testing,,,,,,
+F.3,Acknowledge the choice in the AMB thread,"After the user selects callback or email, send a confirmation message in the AMB thread stating what happens next and when.",Be specific about ETA (e.g. 'a team member will call you within 2 business hours'). Vague acknowledgements are flagged by Apple reviewers.,,UX Testing,,,,,,
+F.4,Handle unclassified free text via clarification,"If the bot cannot classify a free-text turn, ask a single clarification question. If the second turn also fails to classify, escalate per F.2 rather than looping further.",One clarification turn maximum before escalation. Looping clarifications frustrate users and surface as a review finding.,,UX Testing,,,,,,
+F.5,Out-of-hours behaviour,"For escalations received outside business hours, queue the callback for the next business day and queue the email-via-form for review the next business day. State the timing explicitly in the thread.",Both paths share the same out-of-hours rule. Do not pretend to be available; do not silently drop the request.,"Reference:
+- p. 6 | Chapter 2 > 2.4 The Experience Review, Apple's Pre-Launch Gate
+- p. 7 | Chapter 2 > 2.4 Non-Negotiable Requirements
+- p. 10 | Chapter 4 > 4.4 The Experience Review as a Gate Between Staging and Production",UX Testing,,,,,,
+F.6,Optional email reply threading,"Optional: when a human responds to the email-via-form request, thread the reply back into the AMB conversation so the user sees continuity in one surface.","Not required by Apple, but materially improves the user experience when permitted by the brand's email system. If implemented, treat each emailed turn as a regular outbound AMB message subject to all standard rules.",,UX Testing,,,,,,
+Section G. Experience Review submission pack,,,,,,,,,,,
+G.1,Pre-review preconditions,"Before booking Experience Review, all required features (Section C) are implemented, a sandbox brand is provisioned, the demo script is rehearsed, and both agent and bot are operational.","Apple will reject incomplete submissions outright. Run a full internal dress rehearsal first, including a deliberate device-capability fallback.","Reference:
+- p. 6 | Chapter 2 > 2.4 The Experience Review, Apple's Pre-Launch Gate
+- p. 10 | Chapter 4 > 4.4 The Experience Review as a Gate Between Staging and Production
+- p. 11 | Chapter 4 > 4.6 Operational Checklist Before Going Live",Verbal on Apple Policy,,,,,,
+G.2,Five non-negotiable UX requirements,"The submission must demonstrate: live agent escalation reachable (or the exempted callback/email path), opt-out works end to end, no PII requested in plain conversation, consent is captured before any opt-in notification, and capability-aware fallback is shown live.",These are tested every review. Skipping any one is the most common failure mode.,"Reference:
+- p. 7 | Chapter 2 > 2.4 Non-Negotiable Requirements
+Note:
+- the guide's five non-negotiables differ from the checklist's wording",Verbal on Apple Policy,,,,,,
+G.3,"Screen recording, three dimensions","Record three end to end flows: bot flow (entry point through resolution or escalation), agent flow (entry point through agent resolution), and a capability flow that shows the same use case on a device that supports the feature and on a device that does not, demonstrating the fallback to Quick Reply, List Picker, Time Picker, or plain text in place of Form Message.","Each recording must include the entry point and a Leave Conversation. Each must be one continuous take, not edited.","Reference:
+- p. 6 | Chapter 2 > 2.4 The Experience Review, Apple's Pre-Launch Gate
+- p. 10 | Chapter 4 > 4.4 The Experience Review as a Gate Between Staging and Production",Verbal on Apple Policy,,,,,,
+G.4,Recording production method,"Use Apple-recommended recording methods (QuickTime mirroring from iOS, or direct iOS screen recording). Native resolution. No edits. Timestamps documented.","Edited recordings are rejected. If two takes are needed, submit the second take in full, not a stitched composite.",,Verbal on Apple Policy,,,,,,
+G.5,Submit and iterate,Submit the pack via Apple Business Register. Expect at least one iteration cycle with Apple's regional AMB team.,Plan for the iteration. Allocate calendar time for review responses; reviewers usually return comments within a defined SLA but the back-and-forth can span weeks.,"Reference:
+- p. 6 | Chapter 2 > 2.4 The Experience Review, Apple's Pre-Launch Gate
+- p. 10 | Chapter 4 > 4.4 The Experience Review as a Gate Between Staging and Production
+Note:
+- no Box-folder upload process is documented in the master guide",Verbal on Apple Policy,,,,,,
+"Section H. Response codes, retry, timeouts",,,,,,,,,,,
+H.1,Response code taxonomy,"Implement and respect the response code taxonomy: 2xx success, 4xx client errors (including 410 Gone with two distinct semantics on organic AMB vs Invitations), and 5xx server errors with a documented retry policy. ","410 Gone on organic AMB means the user is no longer reachable on the channel; on Invitations it means the user has opted out of that specific brand's invitation templates. Treat them as distinct states in the MSP data model.
+The published /message codes are 200, 400, 401, 403, 404, 410, 500; Apple documents no 429 for AMB, so any rate-limit handling is an MSP-side inference (see DR-15). On organic AMB, 410 means the user closed the conversation; 'no longer reachable' is 404. On Invitations, 410 means a missing or incorrect message-type header. Treat these as distinct states in the MSP data model","Reference:
+- p. 74 | Chapter 24: Response Codes and Error Handling
+- p. 75 | Chapter 24 > 24.1 Retry Logic
+- p. 76 | Chapter 24 > 24.2 Handling 410, Leave Conversation
+- p. 76 | Chapter 24 > 24.3 Receiving and Handling the Close Event
+- p. 73 | Chapter 22 > 22.7 Response Codes for Invitation Messages",Postman,,,,,,
+H.2,Timeout and TTL matrix,"Maintain a matrix of timeouts and TTLs by message type and flow stage: typing indicator 60 seconds, Apple Pay merchant session per the session's expires At value (Apple publishes no fixed duration; do not hardcode 5 minutes)., attachment URL TTLs, ratchet between Apple, MSP, and CDN.","Mismatches between MSP timeouts and Apple's published values are a common Experience Review finding. Cite the spec values, do not improvise.","Reference:
+- p. 90 | Chapter 28: Constraints Reference > 28.2 Timeouts
+- p. 34 | Chapter 11 > 11.3 Timeout
+- p. 55 | Chapter 18 > 18.3 Payment Endpoint Timeouts
+- p. 30 | Chapter 10 > 10.1 Constraints
+- p. 8 | Chapter 3 > 3.2 Token Lifetime and Rotation",Provide Code,,,,,,
+H.3,"Reliable, ordered, signed and revocable partner webhook delivery","Partner webhook events are created atomically with the business transaction and delivered under a documented at-least-once contract; each event carries a stable webhook-id, timestamp and verifiable Standard Webhooks signature; deliveries preserve per-conversation ordering, retry under a bounded policy, resist concurrent/stale workers via leases and fencing, support consumer dedup on webhook-id, and stop after endpoint deactivation.","At least once, not exactly once. Outbox atomic with the journal/state transition; webhook-id stable across retries; sign the exact raw body; document timestamp tolerance + secret rotation; only documented 2xx acks; document retryable responses/timeout/max attempts/terminal state; ordering within a conversation while unrelated conversations progress; deactivation prevents queued events from being claimed or sent; observable attempt/next-retry/last-status/terminal. MSP-platform reliability control; Apple context analogous only.","Cerebro Partner API (docs/partner-api.md); Standard Webhooks specification; analogous MSP Integration Guide Section 24, 8.3, 30.2",Provide Code,"Added 2026-07-29 by MA. PLATFORM_SAFETY, not Apple-normative. Fault-injection delivery test required for green.",,,,,
+"Section I. Security, privacy, constraints",,,,,,,,,,,
+I.1,Opaque ID handling,sourceId and destinationId are opaque tokens. Never persist them alongside personal identifiers outside of an authenticated linkage. Never use them as join keys against PII tables.,"Stable per user-brand pair, not reversible. Account linking is via the channel settings landing page, not via id parsing. Logging fields and analytics pipelines must respect this.","Reference:
+- p. 88 | Chapter 27: Security and Privacy > 27.1 The Opaque ID",Verbal on Apple Policy,,,,,,
+I.2,Encryption posture,"TLS 1.2 or later for all in-transit traffic. Messaging API secret stored in a secrets manager, never in source, logs, or environment files committed to a repository.","Apply standard secret hygiene: rotation policy, access auditing, environment separation. Treat AMB credentials with the same posture as production payment credentials.","Reference:
+- p. 88 | Chapter 27 > 27.2 Encryption Model
+- p. 9 | Chapter 3 > 3.3 Key Management
+- p. 93 | Chapter 29: Unresolved Gaps and Ambiguities, TLS Version Ceiling",Postman,,,,,,
+I.3,Attachment crypto,"Implement AES-CTR per-attachment encryption with the key carried in the message body, not in HTTP headers. Decrypt inbound attachments on receipt; encrypt outbound before /preUpload.",Use the self-test vectors in the spec to verify the crypto end to end. Bugs here typically only show up on a specific file size or content type and are easy to miss without targeted tests.,"Reference:
+- p. 30 | Chapter 10: Attachments
+- p. 31 | Chapter 10 > 10.3 Uploading Attachments (Outbound)
+- p. 31 | Chapter 10 > 10.4 Downloading Attachments (Inbound)",Verbal on Apple Policy,,,,,,
+I.4,Message history not stored at Apple,Apple does not retain conversation history. The MSP is the system of record. Reflect this in brand-facing documentation and in any data-retention or compliance statements.,"Apple's privacy posture is that the conversation lives on the user's device and on the MSP's systems, not on Apple's. The brand and MSP own retention policy. Note specifically that any administrative-access requirement (e.g. FERPA in education, or other regulated-sector administrator-access regimes) is the MSP's and brand's responsibility to satisfy, not Apple's.","Reference:
+- p. 89 | Chapter 27 > 27.3 Message History",Verbal on Apple Policy,,,,,,
+I.5,Payload size constraints,Message body 10 KB maximum. Inline interactiveData 10 KB maximum (use interactiveDataRef + /decodePayload above that). Attachments 100 MB maximum.,"10 KB on interactiveData is the practical ceiling for List Picker and Form Message; large payloads must use interactiveDataRef. 100 MB attachment ceiling is hard; for delivery of larger files (e.g. high-resolution documents), use an external delivery surface and link to it via rich link rather than embedding.","Reference:
+- p. 90 | Chapter 28: Constraints Reference > 28.1 Payload and Size Limits
+- p. 91 | Chapter 28 > 28.3 Character and Text Limits
+- p. 17 | Chapter 6 > 6.2 Handling interactiveDataRef (Payloads Over 10 KB)
+- p. 30 | Chapter 10 > 10.1 Constraints
+Note:
+- the master guide says text message body has no hard published limit; the 10 KB threshold applies to inline `interactiveData`",Postman,,,,,,
+I.6,Partner delivery tenant isolation and secure destination handling,"Every partner webhook endpoint, subscription, outbox event, retry and delivery is owned by exactly one brand; events are never delivered to, queried by, or replayed through another brand's endpoint. The same isolation applies to the SSE firehose and journal-read APIs. Production destinations use HTTPS and are protected against SSRF, DNS rebinding and unsafe redirects. Apple attachment URLs, keys and signatures are not exposed in partner payloads.","Persist non-null brand_id on webhook endpoints and outbox; derive the event brand in the same transaction that writes the outbox row; never take brand from a partner-controlled field; filter endpoint selection, claims, retries, replay and admin reads by brand; RLS backstops both tables. Signing authenticates a payload, it does not establish tenant isolation. Journal/log secret-minimization is broader than webhooks (coordinate with I.3). MSP-platform security control; not Apple-gated.","MSP Integration Guide Section 31.1 (Opaque ID / privacy), cross-ref I.1 and B.8; Standard Webhooks specification",Provide Code,"Added 2026-07-29 by MA. MA_PROGRAM / PLATFORM_SAFETY, not Apple-normative. Two-brand + adversarial SSRF test required for green.",,,,,
+Section J. Important checks,,,,,,,,,,,
+J.1,Confirm platform capability requirements,"Pre-launch verification gate. Walk through every Phase 1 platform capability item and confirm it is implemented, tested, and demonstrable against the current build state.","Carry-forward of the platform-capability detailed note. Phase 1 has a fixed capability checklist that the MSP's platform must support, including: a no-code bot builder, message template library, attachment ingestion and delivery, capability-list parsing and gating, an agent console with capability lock, opt-in/opt-out lifecycle management, and the full set of required features in Section C. Re-verify just before launch, not only at Phase 1 demo.","Reference:
+- p. 5 | Chapter 2 > 2.2 What Apple Expects from an Approved MSP
+- p. 11 | Chapter 4 > 4.6 Operational Checklist Before Going Live",3 Way Meeting,,,,,,
+J.2,Plan multi-day approval dependencies (final gate),"Final pre-launch verification gate confirming all multi-day items are complete: Apple Developer account enrolment, Apple Pay Merchant ID, Payment Processing Certificate, OAuth endpoint approval, and iMessage app demo.",Intentional duplicate of A.5. A.5 is the planning gate (do these have lead time?); J.2 is the launch gate (are they actually done?). Both are needed; do not collapse them.,"Reference:
+- p. 53 | Chapter 18 > 18.1 Prerequisites
+- p. 59 | Chapter 20 > 20.1 Requirements for the New Flow
+- p. 66 | Chapter 21 > 21.3 Prerequisites
+- p. 10 | Chapter 4 > 4.4 The Experience Review as a Gate Between Staging and Production
+Note:
+- same caveat as A.5 for ""Payment Processing Certificate"" and OAuth endpoint approval timeline wording",3 Way Meeting,,,,,,
+J.3,"The MSP connection in ABR is enabled by Apple manually, not automatically",Enabled only once actively working with Apple/Messaging Advisory. ,,,N/A,,,,,,
+J.4,"For the Integration Review, upload the demo video to Apple's Box folder (not via ABR)","Upload to Box (not ABR); Apple reviews, then live demo. Formerly 'Experience Review'. Box: https://apple.ent.box.com/f/1c623a9a22904757a0dccdbc83432f43 ",,,N/A,,,,,,
+J.5,Connect button in the AMB account,The client landing page must be demonstrated via the connect button in the AMB account,,,UX Testing,,,,,,
+74,,,,,,,,,,,

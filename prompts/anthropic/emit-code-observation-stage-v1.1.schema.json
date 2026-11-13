@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "emit_code_observation_stage_v1_1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "item_id",
+    "verdict",
+    "confidence",
+    "rationale",
+    "clauses",
+    "citations",
+    "recommendations",
+    "injection_flags"
+  ],
+  "properties": {
+    "item_id": {"type": "string", "minLength": 1, "maxLength": 24},
+    "verdict": {
+      "enum": ["implemented", "partial", "not_found", "cannot_tell"]
+    },
+    "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+    "rationale": {"type": "string", "minLength": 1, "maxLength": 500},
+    "clauses": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 24,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["clause_id", "status", "reason"],
+        "properties": {
+          "clause_id": {"type": "string", "minLength": 1, "maxLength": 40},
+          "status": {"enum": ["met", "unmet", "unproven", "not_applicable"]},
+          "reason": {"type": "string", "minLength": 1, "maxLength": 240}
+        }
+      }
+    },
+    "citations": {
+      "type": "array",
+      "maxItems": 12,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["clause_id", "path", "start_line", "end_line"],
+        "properties": {
+          "clause_id": {"type": "string", "minLength": 1, "maxLength": 40},
+          "path": {"type": "string", "minLength": 1, "maxLength": 300},
+          "start_line": {"type": "integer", "minimum": 1},
+          "end_line": {"type": "integer", "minimum": 1}
+        }
+      }
+    },
+    "recommendations": {
+      "type": "array",
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["clause_id", "issue", "work", "acceptance"],
+        "properties": {
+          "clause_id": {"type": "string", "minLength": 1, "maxLength": 40},
+          "issue": {"type": "string", "minLength": 1, "maxLength": 240},
+          "work": {"type": "string", "minLength": 1, "maxLength": 360},
+          "acceptance": {"type": "string", "minLength": 1, "maxLength": 360}
+        }
+      }
+    },
+    "injection_flags": {
+      "type": "array",
+      "maxItems": 10,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "line", "summary"],
+        "properties": {
+          "path": {"type": "string", "minLength": 1, "maxLength": 300},
+          "line": {"type": "integer", "minimum": 1},
+          "summary": {"type": "string", "minLength": 1, "maxLength": 240}
+        }
+      }
+    }
+  }
+}

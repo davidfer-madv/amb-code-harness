@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "emit_code_audit",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["items", "injection_flags"],
+  "properties": {
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "code_verdict",
+          "confidence",
+          "rationale",
+          "clauses",
+          "gaps",
+          "recommendations",
+          "escalation_hints"
+        ],
+        "properties": {
+          "id": {"type": "string", "minLength": 1, "maxLength": 24},
+          "code_verdict": {
+            "enum": ["SATISFIED", "VIOLATED", "NOT_FOUND", "UNRESOLVED"]
+          },
+          "confidence": {"type": "integer", "minimum": 0, "maximum": 100},
+          "rationale": {"type": "string", "minLength": 1, "maxLength": 500},
+          "clauses": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["clause_id", "status", "reason", "evidence"],
+              "properties": {
+                "clause_id": {"type": "string", "minLength": 1, "maxLength": 40},
+                "status": {"enum": ["MET", "UNMET", "UNPROVEN", "NOT_APPLICABLE"]},
+                "reason": {"type": "string", "minLength": 1, "maxLength": 300},
+                "evidence": {
+                  "type": "array",
+                  "maxItems": 4,
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": ["path", "start_line", "end_line"],
+                    "properties": {
+                      "path": {"type": "string", "minLength": 1, "maxLength": 300},
+                      "start_line": {"type": "integer", "minimum": 1},
+                      "end_line": {"type": "integer", "minimum": 1},
+                      "symbol": {"type": "string", "maxLength": 160}
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "gaps": {
+            "type": "array",
+            "maxItems": 6,
+            "items": {"type": "string", "minLength": 1, "maxLength": 300}
+          },
+          "recommendations": {
+            "type": "array",
+            "maxItems": 6,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["priority", "issue", "work", "acceptance"],
+              "properties": {
+                "priority": {"enum": ["P0", "P1", "P2", "P3"]},
+                "issue": {"type": "string", "minLength": 1, "maxLength": 240},
+                "work": {"type": "string", "minLength": 1, "maxLength": 400},
+                "acceptance": {"type": "string", "minLength": 1, "maxLength": 400}
+              }
+            }
+          },
+          "escalation_hints": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "enum": [
+                "LOW_CONFIDENCE",
+                "SECURITY_OR_CRYPTO",
+                "TENANCY",
+                "CONCURRENCY_OR_ORDERING",
+                "AUTHORITY_CONFLICT",
+                "CONFLICTING_EVIDENCE",
+                "HIGH_BLAST_RADIUS",
+                "BASELINE_CHANGED"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "injection_flags": {
+      "type": "array",
+      "maxItems": 10,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "line", "summary"],
+        "properties": {
+          "path": {"type": "string", "minLength": 1, "maxLength": 300},
+          "line": {"type": "integer", "minimum": 1},
+          "summary": {"type": "string", "minLength": 1, "maxLength": 240}
+        }
+      }
+    }
+  }
+}

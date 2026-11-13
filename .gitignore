@@ -1,0 +1,49 @@
+# Live read-only clones of candidate repos — never versioned
+workspaces/
+
+# Per-candidate findings are confidential to that candidate; local by default.
+# The neutral tooling (playbook/ checklists/ prompts/ policy/ canonical/ bin/) stays tracked.
+# Track a specific candidate's findings only by explicit force-add if MA decides to.
+*-analysis/
+
+# Customer-specific generated reports and delivery packages stay local.
+reports/*
+!reports/README.md
+deliverables/*
+!deliverables/README.md
+artifacts/
+
+# Local coding-agent/cloud state is never repository content.
+.agents/
+.codex/
+.aws/
+
+# Raw review media and evidence archives are not source artifacts.
+*.mp4
+*.mov
+*.zip
+
+# Candidate/customer-specific historical inputs retained locally only.
+canonical/linq-*
+review-intake/2026-*-transcription.md
+checklists/*Linq*
+checklists/*Apple_Feedback*
+checklists/August*
+checklists/2026_*
+checklists/\[LATEST\]*
+
+# Local environment and credential files.
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+
+# harness install artifacts
+.policy-hashes.txt
+github-upload-manifest.sha256
+
+# local Python bytecode from harness utilities/tests
+__pycache__/
+*.py[cod]
