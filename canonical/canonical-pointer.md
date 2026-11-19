@@ -1,7 +1,12 @@
 # Canonical authority pointer
 
-The Apple AMB canonical is the authority for compliance verdicts. Do NOT copy it into this repo.
-Pin it per run and record the commit + checksum in the run provenance.
+The Apple AMB canonical is the authority for compliance verdicts. Do NOT copy the canonical claim
+closure corpus into this repo. Pin it per run and record the commit + checksum in run provenance.
+
+The approved MSP checklist JSON is retained separately as a byte-identical, checksum-verified
+fallback under `checklists/msp-conformance/v2026.10.06/`. `AMB-canonical` remains the normal source;
+the fallback exists only so a team member can recover the exact approved checklist if that checkout
+cannot be located or accessed.
 
 - Source: madvamb-kb `docs/AMB_Layer2_Canonical_v7_0.md` plus the verified answers, decision
   records, and gap register.

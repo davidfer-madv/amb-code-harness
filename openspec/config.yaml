@@ -14,7 +14,8 @@ context: |
 
   Authority: A checklist row and its per-item canonical claim closure are
   jointly authoritative. canonical/canonical-pointer.md pins the external
-  canonical; the canonical is intentionally not copied into this repository.
+  canonical claim closure. A versioned approved checklist may be retained as
+  a checksum-verified fallback, while AMB-canonical remains the normal source.
   If the canonical is missing, stale, checksum-invalid, or incompatible,
   compliance verdicts and checklist proposals are prohibited.
 

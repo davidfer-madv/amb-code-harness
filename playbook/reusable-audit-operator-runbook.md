@@ -14,6 +14,12 @@ CHECKLIST=/absolute/path/to/AMB-canonical/checklists/msp-conformance/v2026.10.06
 
 Confirm that `CHECKLIST` is the latest approved—not merely newest—MSP checklist.
 
+If a team member cannot locate or access `AMB-canonical`, this repository retains a byte-identical
+fallback at `checklists/msp-conformance/v2026.10.06/checklist.json`. Verify it first with
+`(cd checklists/msp-conformance/v2026.10.06 && sha256sum --check SHA256SUMS)`, then explicitly set
+`CHECKLIST` to that path. The fallback does not replace the canonical authority and does not remove
+the requirement for pinned canonical claim closure.
+
 ## 2. Prepare the isolated snapshot
 
 ```bash

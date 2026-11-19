@@ -1,0 +1,25 @@
+{
+  "version": "v2026.10.06",
+  "derived_from": "v2026.09.28",
+  "source_sheet": "2026_10_06_AMB_MSP_Integration_Checklist (Google Sheet, owner)",
+  "source_file": "source/checklist-2026-10-06.csv",
+  "source_sha256": "541ecf8aa0a90bbb9fd5d2f2fe88acdb4e2bd838e15fd103340ce7b3fecc40e8",
+  "build_script": "scripts/build_msp_v20261006.py",
+  "new_uid": "MSPR-0113",
+  "edits": [
+    "A.4 key_considerations",
+    "B.1 description",
+    "B.7 description",
+    "B.7 key_considerations",
+    "C.28 key_considerations",
+    "E.8 description",
+    "B.7 reference"
+  ],
+  "references_kept_from": "v2026.09.28",
+  "approval": {
+    "status": "APPROVED",
+    "approved_by": "checklist owner (david@messagingadvisory.com)",
+    "approved_at": "2026-10-08"
+  },
+  "approval_step": "The build script produces the proposed version. On approval (2026-10-08) the status, the bundle display name (\"AMB MSP Integration Checklist v2026.10.06, approved October 8\"), the notes, the README, the CHANGES title, the migration map status and the registry were updated; item definitions, checks and checkpoints are exactly as built."
+}

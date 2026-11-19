@@ -1,0 +1,3220 @@
+{
+  "format": "amb-msp-checklist/v1",
+  "version": "v2026.10.06",
+  "source_file": "v2026.09.28/checklist.json; text and B.16 from v2026.10.06/source/checklist-2026-10-06.csv",
+  "source_sha256": "541ecf8aa0a90bbb9fd5d2f2fe88acdb4e2bd838e15fd103340ce7b3fecc40e8",
+  "item_count": 100,
+  "ux_required_count": 31,
+  "ux_by_surface": {
+    "agent_console": 6,
+    "device": 23,
+    "both": 2
+  },
+  "rejected_rows": [],
+  "note": "Definition fields only are normative. engagement_state is one engagement's working notes, retained for traceability and never to be treated as checklist definition. v2026.09.24 keeps the same items, codes, uids and verification methods as v2026.09.21 and uses the reviewed staging v37 dependency graph. ux_required is set from verification_methods (UX Testing); v2026.09.21 had it false only because its normalizer reads the empty verification_rule. v2026.09.28 makes no requirement, verification, check, or checkpoint change. It records the September 21 CSV identities as authoritative and supersedes ambiguous deployed v17 lineage. Owner decisions on 2026-09-28: C.16 keeps its corrected v2026.09.24 title; E.8 and E.10 gain the guidance proposed in v2026.09.27. v2026.10.06 (approved 2026-10-08) adds B.16 (MSPR-0113) and edits A.4, B.1, B.7, C.28 and E.8 from the owner's sheet of 2026-10-06; references keep their v2026.09.28 Apple citations, and B.7 gains a Guide line.",
+  "items": [
+    {
+      "item_code": "A.1",
+      "section": "Section A. Pre-registration and MSP onboarding",
+      "csv_row": 4,
+      "definition": {
+        "requirement": "Register at register.apple.com",
+        "description": "Create the MSP organisation profile on Apple Business Register and begin the MSP onboarding lifecycle.",
+        "key_considerations": "register.apple.com is the only entry point. The Apple Business Register account that owns the MSP profile is distinct from any Apple Developer account the MSP also needs for Apple Pay; do not conflate the two. The organization primary contact in Apple Business Register must be a legal representative of that organization, using a corporate email address, with admin access. The MSP may be listed as a team member on the organization account.\n Also fill in the MSP Requirement Document Template",
+        "reference": "Chapter 2: Getting Approved, The Registration and Review Process\n Chapter 2 > 2.1 Apple Business Register",
+        "verification_methods": "Apple Supplied",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "Apple Supplied"
+      ],
+      "verification_rule": "Apple Supplied",
+      "ux_required": false,
+      "engagement_state": {
+        "review_notes": "Focus area during the review",
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0001",
+      "lineage": {
+        "from_code": "A.1",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "A.2",
+      "section": "Section A. Pre-registration and MSP onboarding",
+      "csv_row": 5,
+      "definition": {
+        "requirement": "Receive Apple API credentials",
+        "description": "Obtain the MSP ID (also called CSP-ID) and the Messaging API secret key from Apple after onboarding is approved.",
+        "key_considerations": "The MSP ID is the value carried in iss (MSP to Apple) and aud (Apple to MSP) on every JWT. The secret key signs every outbound JWT. Treat the secret as production credential material; do not commit, log, or share across environments.",
+        "reference": "Chapter 2 > 2.1 Apple Business Register\n Chapter 3 > 3.3 Key Management",
+        "verification_methods": "Apple Supplied",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "Apple Supplied"
+      ],
+      "verification_rule": "Apple Supplied",
+      "ux_required": false,
+      "engagement_state": {
+        "review_notes": "Fine with Messaging Advisory Checking it",
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "No needed"
+      },
+      "change_log": "",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0002",
+      "lineage": {
+        "from_code": "A.2",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "A.3",
+      "section": "Section A. Pre-registration and MSP onboarding",
+      "csv_row": 6,
+      "definition": {
+        "requirement": "Pass capability and go-to-market review",
+        "description": "Submit Apple's PDF capability assessment and the go-to-market plan to Apple's regional AMB team for review.",
+        "key_considerations": "Apple's regional AMB team is the gatekeeper. Be ready to justify automation coverage, agent availability, brand pipeline, and pricing posture. Phase 1 is the gate; Phase 2 and Phase 3 unlock additional capability tiers later.",
+        "reference": "Chapter 2 > 2.1a MSP Account Types, the Path to Production, and Pre-Launch Communications\n Chapter 2 > 2.4 The Experience Review, Apple's Pre-Launch Gate\n Note: the capability-assessment PDF mechanics themselves are not in the guide (Onboarding docs).",
+        "verification_methods": "3 Way Meeting",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "3 Way Meeting"
+      ],
+      "verification_rule": "3 Way Meeting",
+      "ux_required": false,
+      "engagement_state": {
+        "review_notes": "Might have questions about the topic",
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0005",
+      "lineage": {
+        "from_code": "A.3",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "A.4",
+      "section": "Section A. Pre-registration and MSP onboarding",
+      "csv_row": 7,
+      "definition": {
+        "requirement": "Plan multi-day approval dependencies to be up and running with the first testing brands",
+        "description": "Apple Developer account enrolment, Apple Pay Merchant ID, Payment Processing Certificate, OAuth configured in Apple Business Register and checked by Apple, and Invitations activated by Apple on request",
+        "key_considerations": "Start planning to get the approvals as in some cases this can take some days.This is not a requirement but a review to be ready on what the process implies\n  Apple Developer account enrolment, Apple Pay Merchant ID, Payment Processing Certificate, OAuth configuration in Apple Business Register (an Apple check, not an approval request), Invitation activation, and the App Extension \n If a third party processor is the merchant of record for an existing payments product, a separate Apple Developer enrolment is still required for AMB Apple Pay. The brand (merchant) holds the Apple Developer account and Apple Pay Merchant ID and shares the certificates the MSP needs with it (C.9 says which certificate does what); the MSP does not need the processor's enrolments\n\nOAuth needs no approval request to Apple: fill in 'Integrated OAuth2 Authentication' in the Apple Business Register dashboard and Apple checks the change when it is applied. Messaging Advisory guidance: a security audit applies only when the OAuth system is not a standard one . Invitations are the one feature Apple must activate on request, so ask early",
+        "reference": "Chapter 2 > 2.1a MSP Account Types, the Path to Production, and Pre-Launch Communications (account-review latency)\n Chapter 18 > 18.1 Prerequisites (Apple Developer account, Merchant ID)\n Chapter 20 > 20.1 Requirements for the New Flow (OAuth endpoint prerequisites)",
+        "verification_methods": "Apple Supplied",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "Apple Supplied"
+      ],
+      "verification_rule": "Apple Supplied",
+      "ux_required": false,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "v2026.09.24: text revised (see CHANGES.md); requirement unchanged. v2026.10.06: text revised from the owner's sheet of 2026-10-06; requirement unchanged.",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0100",
+      "lineage": {
+        "from_code": "A.4",
+        "from_version": "v2026.09.28",
+        "relation": "edited"
+      }
+    },
+    {
+      "item_code": "A.5",
+      "section": "Section A. Pre-registration and MSP onboarding",
+      "csv_row": 8,
+      "definition": {
+        "requirement": "Honour the pre-launch advertising embargo",
+        "description": "Until Apple grants public launch, no marketing, screenshots, brand mentions, or capability claims may appear in any public channel.",
+        "key_considerations": "Embargo covers website, decks, social, partner comms, and press. Breach can delay or revoke launch approval. Internal-only material is permitted; external is not.",
+        "reference": "Chapter 2 > 2.1a MSP Account Types, the Path to Production, and Pre-Launch Communications (Pre-launch communications embargo)",
+        "verification_methods": "Verbal On Apple Policy",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "Verbal On Apple Policy"
+      ],
+      "verification_rule": "Verbal On Apple Policy",
+      "ux_required": false,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "In Progress"
+      },
+      "change_log": "",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0006",
+      "lineage": {
+        "from_code": "A.5",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "B.1",
+      "section": "Section B. Core API transport layer",
+      "csv_row": 10,
+      "definition": {
+        "requirement": "Implement the outbound /message endpoint (MSP to Apple)",
+        "description": "Send every business-to-user payload with POST https://mspgw.push.apple.com/v1/message. (or mspgw-int) Apple Messages for Business validates the request, returns a response code to the MSP platform, and delivers the message to the user's device.",
+        "key_considerations": "Apple-hosted. Source-Id is the business ID and Destination-Id the user's Opaque ID; the pair is reversed on inbound. Requires the JWT (B.9), the full header set (B.10) and the common body fields (B.11). Only 5xx is retried (H.1). Keep the host per-environment so production never resolves to staging (mspgw-int.push.apple.com).",
+        "reference": "Chapter 7: API Endpoints Reference\n Chapter 8 > 8.2 Sending Messages to Users",
+        "verification_methods": "PostMan, Provide Code",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "PostMan",
+        "Provide Code"
+      ],
+      "verification_rule": "PostMan, Provide Code",
+      "ux_required": false,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "No needed"
+      },
+      "change_log": "v2026.10.06: text revised from the owner's sheet of 2026-10-06; requirement unchanged.",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0007",
+      "lineage": {
+        "from_code": "B.1",
+        "from_version": "v2026.09.28",
+        "relation": "edited"
+      }
+    },
+    {
+      "item_code": "B.2",
+      "section": "Section B. Core API transport layer",
+      "csv_row": 11,
+      "definition": {
+        "requirement": "Implement the inbound /message endpoint (Apple to MSP)",
+        "description": "Host the /message endpoint at the MSP base URL registered with Apple so that Apple Messages for Business can POST user messages, typing indicators, interactive responses and close events to the platform.",
+        "key_considerations": "MSP-hosted, at the registered base URL plus /message; re-register any change of URL with Apple. Must accept GZIP (B.12), run the five-step validation (B.13), allow ingress only from 17.0.0.0/8 (B.14) and return the documented codes (H.1). Route on destination-id to the correct tenant (I.6). Covers text, interactive, typing_start, typing_end and close.",
+        "reference": "Chapter 7: API Endpoints Reference\n Chapter 8 > 8.1 Receiving Messages from Users",
+        "verification_methods": "PostMan, Provide Code",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "PostMan",
+        "Provide Code"
+      ],
+      "verification_rule": "PostMan, Provide Code",
+      "ux_required": false,
+      "engagement_state": {},
+      "change_log": "v2026.09.24: text revised (see CHANGES.md); requirement unchanged.",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0008",
+      "lineage": {
+        "from_code": "B.2",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "B.3",
+      "section": "Section B. Core API transport layer",
+      "csv_row": 12,
+      "definition": {
+        "requirement": "Implement /preDownload for inbound attachments",
+        "description": "Authorise the retrieval of an inbound attachment with GET https://mspgw.push.apple.com/v1/preDownload, then fetch the file from the returned download-url and decrypt it before delivering it to the business.",
+        "key_considerations": "Apple-hosted GET with an empty body. Headers authorization, source-id, url, signature (Base64) and owner come from the inbound attachment metadata, where the same value is named signature-base64. With preUpload (B.4), the exception to the common body fields (B.11). The download-url is short-lived; set SNI from its hostname. Decrypt per I.3; failures need an agent-facing error (C.2).",
+        "reference": "Chapter 7: API Endpoints Reference\n Chapter 10 > 10.4 Downloading Attachments (Inbound)",
+        "verification_methods": "PostMan, Provide Code",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "PostMan",
+        "Provide Code"
+      ],
+      "verification_rule": "PostMan, Provide Code",
+      "ux_required": false,
+      "engagement_state": {},
+      "change_log": "v2026.09.24: text revised (see CHANGES.md); requirement unchanged.",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0009",
+      "lineage": {
+        "from_code": "B.3",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "B.4",
+      "section": "Section B. Core API transport layer",
+      "csv_row": 13,
+      "definition": {
+        "requirement": "Implement /preUpload for outbound attachments",
+        "description": "Authorise an outbound attachment with GET https://mspgw.push.apple.com/v1/preUpload, passing the size of the already-encrypted file. The endpoint returns the upload-url together with the attachment metadata needed to build the Attachment dictionary.",
+        "key_considerations": "Apple-hosted GET. Encrypt first and pass the encrypted size, not the plaintext size. With preDownload, the exception to the common body fields (B.11). Enforce size limits before calling so oversized files fail clearly (I.5, C.2). Keep the returned metadata URL: B.5 e and the message JSON both need it.",
+        "reference": "Chapter 7: API Endpoints Reference\n Chapter 10 > 10.3 Uploading Attachments (Outbound)",
+        "verification_methods": "PostMan, Provide Code",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "PostMan",
+        "Provide Code"
+      ],
+      "verification_rule": "PostMan, Provide Code",
+      "ux_required": false,
+      "engagement_state": {},
+      "change_log": "",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0010",
+      "lineage": {
+        "from_code": "B.4",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "B.5",
+      "section": "Section B. Core API transport layer",
+      "csv_row": 14,
+      "definition": {
+        "requirement": "Implement the upload to the URL returned by /preUpload",
+        "description": "POST the encrypted attachment bytes to the upload-url returned by /preUpload, capture the file checksum from the response, and combine it with the preUpload metadata into the Attachment dictionary that the outbound message JSON references.",
+        "key_considerations": "The only endpoint without a fixed Apple host: use the upload-url returned by /preUpload, never a cached or hardcoded one. It is short-lived and single-use, with SNI from its hostname. Only the reference goes in the message JSON, so the upload and checksum must complete before the /message call. A failed upload must block the send (C.2).",
+        "reference": "Chapter 7: API Endpoints Reference\n Chapter 10 > 10.3 Uploading Attachments (Outbound)",
+        "verification_methods": "PostMan, Provide Code",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "PostMan",
+        "Provide Code"
+      ],
+      "verification_rule": "PostMan, Provide Code",
+      "ux_required": false,
+      "engagement_state": {},
+      "change_log": "",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0011",
+      "lineage": {
+        "from_code": "B.5",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "B.6",
+      "section": "Section B. Core API transport layer",
+      "csv_row": 15,
+      "definition": {
+        "requirement": "Implement /decodePayload for large interactive payloads",
+        "description": "When an inbound interactive response arrives by reference instead of inline, download and decrypt the referenced attachment and POST the encoded data to https://mspgw.push.apple.com/v1/decodePayload to recover the original interactiveData dictionary the user's device sent.",
+        "key_considerations": "Apple-hosted POST. Triggered by interactiveDataRef when a payload exceeds roughly 10 KB, which is routine for list picker, form and App Extension responses. The chain is preDownload, download, decrypt, then decodePayload; parsing the encoded data locally is unsupported. Implement once for every interactive type in Section C.",
+        "reference": "Chapter 7: API Endpoints Reference\n Chapter 6 > 6.2 Handling interactiveDataRef (Payloads Over 10 KB)",
+        "verification_methods": "PostMan, Provide Code",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "PostMan",
+        "Provide Code"
+      ],
+      "verification_rule": "PostMan, Provide Code",
+      "ux_required": false,
+      "engagement_state": {},
+      "change_log": "",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0012",
+      "lineage": {
+        "from_code": "B.6",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "B.7",
+      "section": "Section B. Core API transport layer",
+      "csv_row": 16,
+      "definition": {
+        "requirement": "Implement /authenticate for the OAuth 2.0 Authentication message",
+        "description": "Send POST https://mspgw.push.apple.com/v1/authenticate with the authentication message body: version 2.0, requestIdentifier, and oauth2 with responseType code, scope, state and redirectURI. The device opens the brand's OAuth URL, and the user signs in on the brand's identity provider. The identity provider redirects to the brand's redirectURI with an authorization code. The brand's back end exchanges the code at its Token URL using the client secret and keeps the tokens on its side. The callback finishes with a 302 to messages-auth://?status=success, failure, cancel or unknown. Apple then sends a webhook to /message carrying requestIdentifier and status, never a token.",
+        "key_considerations": "Apple hosted POST, used with C.10 and the per brand OAuth config in C.25: OAuth URL and Client Identifier in Apple Business Register, Token URL and client secret in channel settings. Only responseType code is supported. PKCE is not supported. state comes back unmodified. requestIdentifier is not present at the callback, so correlate on state. The EV certificate applies to the redirectURI host. Generate a new requestIdentifier per request and never reuse it; several requests are allowed. One shot: nothing from the sign in travels with later messages, and any session is the brand's own record keyed on the Opaque ID. responseEncryptionKey belongs to the original authenticate flow, deprecated since February 2023",
+        "reference": "Chapter 7: API Endpoints Reference\n Chapter 20 > 20.2 Initiating the Flow\nMSP Integration Guide §17, §17.2, §17.9, §17.10",
+        "verification_methods": "PostMan, Provide Code",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "PostMan",
+        "Provide Code"
+      ],
+      "verification_rule": "PostMan, Provide Code",
+      "ux_required": false,
+      "engagement_state": {},
+      "change_log": "v2026.09.24: text revised (see CHANGES.md); requirement unchanged. v2026.10.06: text revised from the owner's sheet of 2026-10-06; requirement unchanged.",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0013",
+      "lineage": {
+        "from_code": "B.7",
+        "from_version": "v2026.09.28",
+        "relation": "edited"
+      }
+    },
+    {
+      "item_code": "B.8",
+      "section": "Section B. Core API transport layer",
+      "csv_row": 17,
+      "definition": {
+        "requirement": "Implement /constructPayload for App Clip, Apple Maps and Apple Music rich links",
+        "description": "Build App Clip, Apple Maps and Apple Music rich link payloads server side with POST https://mspgw.push.apple.com/v1/constructPayload from a source URL, and send the payload the endpoint returns instead of assembling it on the platform.",
+        "key_considerations": "Apple-hosted POST, required even when these link types are secondary, and the only supported way to build the payload. All three types must be demonstrated separately (C.13, C.14, C.15) with a working App Clip URL as evidence. For Apple Music, build the storefront URL from the inbound locale rather than hardcoding a country code.",
+        "reference": "Chapter 7: API Endpoints Reference\n Chapter 21 > 21.1 The Construct Payload API: App Clips, Apple Music, and Apple Maps",
+        "verification_methods": "PostMan, Provide Code",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "PostMan",
+        "Provide Code"
+      ],
+      "verification_rule": "PostMan, Provide Code",
+      "ux_required": false,
+      "engagement_state": {},
+      "change_log": "",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0014",
+      "lineage": {
+        "from_code": "B.8",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "B.9",
+      "section": "Section B. Core API transport layer",
+      "csv_row": 18,
+      "definition": {
+        "requirement": "Implement HS256 JWT signing with 1-hour rotation",
+        "description": "Sign every outbound request with an HS256 JWT using the Messaging API secret. iat must be within the last hour at the receiving end.",
+        "key_considerations": "alg is fixed at HS256. iss is the MSP ID on outbound; aud is the MSP ID on inbound (from Apple). Apple rejects tokens with iat older than 1 hour, so cache and rotate tokens accordingly. Reject inbound JWTs that fail signature, iat freshness, or aud match.",
+        "reference": "Chapter 3: JWT Authentication\n Chapter 3 > 3.1 JWT Structure\n Chapter 3 > 3.2 Token Lifetime and Rotation",
+        "verification_methods": "PostMan",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "PostMan"
+      ],
+      "verification_rule": "PostMan",
+      "ux_required": false,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "No needed"
+      },
+      "change_log": "",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0015",
+      "lineage": {
+        "from_code": "B.9",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "B.10",
+      "section": "Section B. Core API transport layer",
+      "csv_row": 19,
+      "definition": {
+        "requirement": "Set every required HTTP header on every outbound message",
+        "description": "Populate Authorization, id, Source-Id, Destination-Id, Content-Type, and the message-type-specific headers (e.g. interactive headers, attachment headers) on every outbound request.",
+        "key_considerations": "Headers are message-type dependent. Interactive messages require additional headers above the standard set. Attachment flows need the /preUpload and /preDownload request headers (source-id, url, signature and owner on /preDownload). There are no encryption headers: the attachment decryption key travels in the message body. Missing headers cause the message to be rejected silently in some cases.",
+        "reference": "Chapter 5: HTTP Headers\n Chapter 5 > 5.1 Standard Headers (All Messages)\n Chapter 5 > 5.2 Interactive Message Headers (Additional)",
+        "verification_methods": "Provide Code",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "Provide Code"
+      ],
+      "verification_rule": "Provide Code",
+      "ux_required": false,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "No needed"
+      },
+      "change_log": "v2026.09.24: text revised (see CHANGES.md); requirement unchanged.",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0016",
+      "lineage": {
+        "from_code": "B.10",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "B.11",
+      "section": "Section B. Core API transport layer",
+      "csv_row": 20,
+      "definition": {
+        "requirement": "Populate the common HTTP body fields correctly",
+        "description": "Every outbound message body must carry the common fields (id, sourceId, destinationId, type, plus the type-specific payload).",
+        "key_considerations": "id must be a unique UUID per message. sourceId / destinationId carry opaque user identifiers, never phone numbers or emails. A new message gets a new UUID. A retry of the same message after a 5xx or a timeout should reuse the same id, so the send is idempotent; never reuse an id for different content. This is a Messaging Advisory recommendation: L397 describes Apple's own retries (only 5xx is retried), and whether Apple deduplicates on id is not yet confirmed.",
+        "reference": "Chapter 6: Message Structure, The Core JSON Body\n Chapter 6 > 6.1 Common Body Fields",
+        "verification_methods": "Provide Code",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "Provide Code"
+      ],
+      "verification_rule": "Provide Code",
+      "ux_required": false,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "No needed"
+      },
+      "change_log": "v2026.09.24: text revised (see CHANGES.md); requirement unchanged.",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0017",
+      "lineage": {
+        "from_code": "B.11",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "B.12",
+      "section": "Section B. Core API transport layer",
+      "csv_row": 21,
+      "definition": {
+        "requirement": "Implement GZIP request body handling on inbound",
+        "description": "Inbound webhook requests from Apple may arrive gzip-compressed. The MSP must decompress before parsing.",
+        "key_considerations": "Inspect Content-Encoding: gzip and decompress before JSON parsing. Failing to handle this surfaces as intermittent body-parse errors only under load.",
+        "reference": "Chapter 8 > 8.1 Receiving Messages from Users (inbound validation step: gunzip GZIP body)",
+        "verification_methods": "PostMan",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "PostMan"
+      ],
+      "verification_rule": "PostMan",
+      "ux_required": false,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "No needed"
+      },
+      "change_log": "",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0018",
+      "lineage": {
+        "from_code": "B.12",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "B.13",
+      "section": "Section B. Core API transport layer",
+      "csv_row": 22,
+      "definition": {
+        "requirement": "Implement the 5-step inbound message validation",
+        "description": "Every inbound request must pass: JWT signature verification, JWT iat freshness check (within 1 hour), required header presence, body schema validation, and id uniqueness / replay protection.",
+        "key_considerations": "Apple expects all five checks. Failure to enforce iat freshness or id uniqueness is a common review finding. Keep a short-window id replay cache (1 hour matches the iat window).\n\nAcknowledge a duplicate id without processing it again, so Apple stops retrying. The replay cache is a Messaging Advisory recommendation: the guide describes the validation sequence but names no cache. A missing capability-list header fails header validation, because Apple marks the header REQUIRED (Apple source: AMB canonical v7.0 L290).",
+        "reference": "Chapter 8 > 8.1 Receiving Messages from Users (5-step inbound validation)\n Chapter 3 > 3.2 Token Lifetime and Rotation (iat freshness)",
+        "verification_methods": "PostMan",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "PostMan"
+      ],
+      "verification_rule": "PostMan",
+      "ux_required": false,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "No needed"
+      },
+      "change_log": "v2026.09.24: text revised (see CHANGES.md); requirement unchanged.",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0019",
+      "lineage": {
+        "from_code": "B.13",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "B.14",
+      "section": "Section B. Core API transport layer",
+      "csv_row": 23,
+      "definition": {
+        "requirement": "Restrict inbound ingress to 17.0.0.0/8",
+        "description": "Apple's webhook traffic originates from the 17.0.0.0/8 CIDR. Restrict the inbound /message endpoint to that range at the edge.",
+        "key_considerations": "Apply at the WAF or load balancer, not inside the application. 17.0.0.0/8 is an Apple-owned block but is large; combine with JWT verification for defence in depth.",
+        "reference": "Apple source: AMB canonical v7.0 L4485 (allow Apple's Class A block for incoming traffic, written there as 17.0.0/8). Restricting at the edge rather than only allowing it is a Messaging Advisory recommendation.",
+        "verification_methods": "PostMan",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "PostMan"
+      ],
+      "verification_rule": "PostMan",
+      "ux_required": false,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "No needed"
+      },
+      "change_log": "v2026.09.24: text revised (see CHANGES.md); requirement unchanged.",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0020",
+      "lineage": {
+        "from_code": "B.14",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "B.15",
+      "section": "Section B. Core API transport layer",
+      "csv_row": 24,
+      "definition": {
+        "requirement": "Honour the Opaque ID identity model",
+        "description": "sourceId and destinationId on organic AMB are opaque tokens issued by Apple. Never treat them as, transform them into, or persist them alongside, real-world identifiers (phone, email, customer ID) outside of an authenticated linkage.",
+        "key_considerations": "Opaque IDs are stable per user-brand pair but are not reversible. Logging or analytics pipelines that flatten sourceId into a join key against PII break Apple's privacy contract. Two different linkings, never by parsing an id: the Client Landing Page links a brand (the MSP's customer, the business) to its MSP account; an end user's opaque ID is linked to that user's account at the brand only after Authentication (C.10) or an agent verification, after which Apple recommends showing the user's name in the agent console (Apple source: AMB canonical v7.0 L6172).",
+        "reference": "Chapter 27 > 27.1 The Opaque ID",
+        "verification_methods": "Provide Code",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "Provide Code"
+      ],
+      "verification_rule": "Provide Code",
+      "ux_required": false,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "No needed"
+      },
+      "change_log": "v2026.09.24: text revised (see CHANGES.md); requirement unchanged.",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0021",
+      "lineage": {
+        "from_code": "B.15",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "B.16",
+      "section": "Section B. Core API transport layer",
+      "csv_row": 25,
+      "definition": {
+        "requirement": "Business Invitation delivered end to end with brandLogo on supported devices",
+        "description": "Send an approved invitation (binaryChoice.engage.withImage) to a phone number whose owner opted in. Include a brandLogo PNG in parameters and confirm it renders, and that Yes and No reach the MSP with the correct sourceId and destinationId.",
+        "key_considerations": "Apple requires every device linked to the Apple Account to run iOS 18.0 or macOS 15.0 or later. If any linked device is older, the user is not reachable for invitations because of device compatibility, and the gateway returns 404. Treat that as unreachable and move to fallback (K.1); do not retry. In the testing environment, a 404 can also mean the destination Apple Account is not added as an internal tester in Apple Business Register, so check the tester list before treating it as a device problem. brandLogo must be a PNG sent as a Base64 encoded string. Prerequisites: Apple has activated invitations for the brand, and the subtitle uses the approved wording.",
+        "reference": "Chapter 22: Invitation Messages (Requirements, Notification Headers, 404 reasons)",
+        "verification_methods": "Provide Code and Postman",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "Provide Code",
+        "PostMan"
+      ],
+      "verification_rule": "Provide Code",
+      "ux_required": false,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "No needed"
+      },
+      "change_log": "v2026.10.06: new item (owner's sheet of 2026-10-06).",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0113",
+      "lineage": {
+        "from_code": null,
+        "from_version": null,
+        "relation": "new"
+      }
+    },
+    {
+      "item_code": "C.1",
+      "section": "Section C. Required features. Note for all rich elements: an agent text bubble framing the content MUST immediately precede the rich element (for example \"Please log into your account\" before an OAuth request). Apple feedback 2026 08 25: this framing bubble is verified per element type in the review, and every user action on a rich element MUST be followed by an agent confirmation summary. See C.29 and C.30.",
+      "csv_row": 27,
+      "definition": {
+        "requirement": "Receiving and Sending Messages",
+        "description": "Send and receive plain text, international characters, and emojis in both directions.",
+        "key_considerations": "UTF-8 throughout. Validate that emoji surrogate pairs survive serialisation in the agent console, mobile SDK (if any), and logs. Required for both bot and live agent.\n \n Note: If you plan to use symbols, please use Apple approved symbols from here: https://developer.apple.com/sf-symbols/",
+        "reference": "Chapter 8: Sending and Receiving Text Messages\n Chapter 8 > 8.1 Receiving Messages from Users\n Chapter 8 > 8.2 Sending Messages to Users",
+        "verification_methods": "PostMan",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "PostMan"
+      ],
+      "verification_rule": "PostMan",
+      "ux_required": false,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0022",
+      "lineage": {
+        "from_code": "C.1",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "C.2",
+      "section": "Section C. Required features. Note for all rich elements: an agent text bubble framing the content MUST immediately precede the rich element (for example \"Please log into your account\" before an OAuth request). Apple feedback 2026 08 25: this framing bubble is verified per element type in the review, and every user action on a rich element MUST be followed by an agent confirmation summary. See C.29 and C.30.",
+      "csv_row": 28,
+      "definition": {
+        "requirement": "Receiving and sending attachments, wallet passes, and actionable upload errors",
+        "description": "Preserve the existing 100 MB, `/preUpload`, `/preDownload`, AES-CTR, key transport, and test-vector obligations. When an upload or download fails, the agent console MUST show a specific actionable category—size limit, unsupported type, encryption/validation, timeout/network, or upstream rejection—rather than only “upload failed,” and MUST provide safe user-facing recovery copy.",
+        "key_considerations": "Derive the reason from validated local checks or an actual upstream response; do not invent precision Apple did not return. Cross-reference I.3/I.5/I.6 for limits and secret minimization. Never display keys, signatures, internal URLs, or raw sensitive errors.\n Note: Show PDF, Docs, ics, contact and Wallet, extra if you show USDZ 3D , ensure files over 100Mb cannot be sent",
+        "reference": "Chapter 10: Attachments (10.1–10.4)\n Chapter 19: Wallet Pass Delivery",
+        "verification_methods": "Provide Code, UX Testing",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "Provide Code",
+        "UX Testing"
+      ],
+      "verification_rule": "Provide Code, UX Testing",
+      "ux_required": true,
+      "engagement_state": {
+        "review_notes": "UX Testing plus Provide Code (negative tests for size, type, encryption, timeout, and upstream rejection).",
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "",
+      "ux_surface": "agent_console",
+      "uid": "MSPR-0023",
+      "lineage": {
+        "from_code": "C.2",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "C.3",
+      "section": "Section C. Required features. Note for all rich elements: an agent text bubble framing the content MUST immediately precede the rich element (for example \"Please log into your account\" before an OAuth request). Apple feedback 2026 08 25: this framing bubble is verified per element type in the review, and every user action on a rich element MUST be followed by an agent confirmation summary. See C.29 and C.30.",
+      "csv_row": 29,
+      "definition": {
+        "requirement": "Tapback Reactions",
+        "description": "Detect inbound user tapbacks (Loved, Liked, Disliked, Laughed, Emphasized, Questioned) including on interactive payloads, plus stickers and emoji reactions.",
+        "key_considerations": "\"Tapbacks are inbound only; the MSP does not send outbound tapbacks. Each reaction arrives as an ordinary text message with its own new id and carries no original message id, so it cannot be threaded to a specific message. Correlation is best effort from the body text only: standard reactions quote the original text, and interactive-message reactions collapse to 'Liked 1 Business Message', which identifies no specific message. Parsing is locale dependent. Per Apple, display the received text as is.\n Note: Tapback must be seen on the Human agent console or recognized as a message",
+        "reference": "Chapter 12: Tapback Reactions (12.1–12.4)",
+        "verification_methods": "PostMan",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "PostMan"
+      ],
+      "verification_rule": "PostMan",
+      "ux_required": false,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0024",
+      "lineage": {
+        "from_code": "C.3",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "C.4",
+      "section": "Section C. Required features. Note for all rich elements: an agent text bubble framing the content MUST immediately precede the rich element (for example \"Please log into your account\" before an OAuth request). Apple feedback 2026 08 25: this framing bubble is verified per element type in the review, and every user action on a rich element MUST be followed by an agent confirmation summary. See C.29 and C.30.",
+      "csv_row": 30,
+      "definition": {
+        "requirement": "Receiving Leave Conversation Messages",
+        "description": "When the user leaves the conversation, notify both the live agent and any automated agent, and stop sending further messages on that thread.",
+        "key_considerations": "Leave Conversation is a hard stop. Any outbound after this point is a policy violation and may also be rejected by Apple. The bot or agent must be informed so it does not queue follow-ups. You have to demonstrate how the platform blocks those messages if the user left or send a STOP for example.\n Note: Show that nobody can send a message to an end user, eventually not even send a Business Invitation. The user can always restart the conversation at any time",
+        "reference": "Chapter 24 > 24.2 Handling 410, Leave Conversation\n Chapter 24 > 24.3 Receiving and Handling the Close Event\n Chapter 22 > 22.5 The CloseSession Webhook (Invitations variant)",
+        "verification_methods": "PostMan",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "PostMan"
+      ],
+      "verification_rule": "PostMan",
+      "ux_required": false,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0025",
+      "lineage": {
+        "from_code": "C.4",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "C.5",
+      "section": "Section C. Required features. Note for all rich elements: an agent text bubble framing the content MUST immediately precede the rich element (for example \"Please log into your account\" before an OAuth request). Apple feedback 2026 08 25: this framing bubble is verified per element type in the review, and every user action on a rich element MUST be followed by an agent confirmation summary. See C.29 and C.30.",
+      "csv_row": 31,
+      "definition": {
+        "requirement": "Rich Link Messages",
+        "description": "Every URL sent by an automated or human agent should be sent as a rich link with title, image, and URL, rather than as bare text. Needs to render all examples",
+        "key_considerations": "Apple expects rich link rendering for all URLs, not just marketing links. Auto-generated rich links have specific image and metadata requirements; meet them or supply a manually constructed RichLinkData payload.\n Note: Ensure you can show also how a link is constructed from the agent console\n \n Apple feedback 2026 08 25: the fallback image for a rich link MUST be a small brand logo under 150 pixels so the card renders small. Source it from the per brand icon library (C.31).\n\nA manually built rich link MUST carry assets, because Apple marks assets REQUIRED (Apple source: AMB canonical v7.0 L1327). Payloads from /constructPayload are sent as returned.",
+        "reference": "Chapter 9: Rich Links, Every URL, Every Time (9.1–9.5)\n Chapter 2 > 2.4 Non-Negotiable Requirements (Rich Links for all URLs)",
+        "verification_methods": "PostMan",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "PostMan"
+      ],
+      "verification_rule": "PostMan",
+      "ux_required": false,
+      "engagement_state": {
+        "review_notes": "MA: Add Fallback Information",
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "Apple feedback 2026 08 25: fallback logo size and source. v2026.09.24: text revised (see CHANGES.md); requirement unchanged.",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0026",
+      "lineage": {
+        "from_code": "C.5",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "C.6",
+      "section": "Section C. Required features. Note for all rich elements: an agent text bubble framing the content MUST immediately precede the rich element (for example \"Please log into your account\" before an OAuth request). Apple feedback 2026 08 25: this framing bubble is verified per element type in the review, and every user action on a rich element MUST be followed by an agent confirmation summary. See C.29 and C.30.",
+      "csv_row": 32,
+      "definition": {
+        "requirement": "Quick Reply messages for bounded choices and confirmations",
+        "description": "Preserve the two-to-five single-select constraint. Use Quick Reply for yes/no, confirmations, and other bounded expected-answer prompts whenever two to five tappable choices fully represent the answer; do not force open text for such prompts. Use List Picker for more than five options.",
+        "key_considerations": "Precede the interactive object with concise introductory text (framing text). A Quick Reply tap counts as consent only when the preceding disclosure and E.4 record requirements are satisfied. Do not show a choice after close, Leave Conversation, or opt-out.\n\nRoute on the tapped item's identifier, never on its displayed title, and send the confirmation summary after the tap (C.30).",
+        "reference": "Chapter 14: Quick Reply Messages\n Chapter 14 > 14.1 Constraints\n Chapter 14 > 14.2 Payload Structure",
+        "verification_methods": "UX Testing, PostMan",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "UX Testing",
+        "PostMan"
+      ],
+      "verification_rule": "UX Testing, PostMan",
+      "ux_required": true,
+      "engagement_state": {
+        "review_notes": "Postman plus UX Testing across representative bot, automation, and agent confirmations.",
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "v2026.09.24: text revised (see CHANGES.md); requirement unchanged.",
+      "ux_surface": "device",
+      "uid": "MSPR-0027",
+      "lineage": {
+        "from_code": "C.6",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "C.7",
+      "section": "Section C. Required features. Note for all rich elements: an agent text bubble framing the content MUST immediately precede the rich element (for example \"Please log into your account\" before an OAuth request). Apple feedback 2026 08 25: this framing bubble is verified per element type in the review, and every user action on a rich element MUST be followed by an agent confirmation summary. See C.29 and C.30.",
+      "csv_row": 33,
+      "definition": {
+        "requirement": "List Picker Message",
+        "description": "Support single-select, multi-select, multi-section, icons, and images on both sent and received list pickers.",
+        "key_considerations": "Cover the matrix of variants in the Phase 1 demo, not just the simplest case. Icons and images have separate size and format constraints; meet both.\n\nApple's wire shape is listPicker.sections[].items[]; a section allows several choices with multipleSelection true. Replies with images usually exceed 10 KB and arrive as interactiveDataRef, so decode them through /decodePayload before parsing (Apple source: AMB canonical v7.0 L5063, L1813).",
+        "reference": "Chapter 15: List Picker Messages (15.1–15.5)",
+        "verification_methods": "PostMan",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "PostMan"
+      ],
+      "verification_rule": "PostMan",
+      "ux_required": false,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "v2026.09.24: text revised (see CHANGES.md); requirement unchanged.",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0028",
+      "lineage": {
+        "from_code": "C.7",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "C.8",
+      "section": "Section C. Required features. Note for all rich elements: an agent text bubble framing the content MUST immediately precede the rich element (for example \"Please log into your account\" before an OAuth request). Apple feedback 2026 08 25: this framing bubble is verified per element type in the review, and every user action on a rich element MUST be followed by an agent confirmation summary. See C.29 and C.30.",
+      "csv_row": 34,
+      "definition": {
+        "requirement": "Time Picker Message",
+        "description": "Send a time picker with multiple time slots, optional location information, and icons.",
+        "key_considerations": "Time slots, locations, and icons are all expected in the demo. Time zones must be handled correctly; surface the agent or bot's intended zone explicitly in the payload.\n Single and multiple selection and sections are List Picker features (C.7). A Time Picker carries one event with its time slots, and the reply returns the slot the customer chose.",
+        "reference": "Chapter 16: Time Picker Messages\n Chapter 16 > 16.1 Key Fields\n Chapter 16 > 16.3 Send Payload",
+        "verification_methods": "PostMan",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "PostMan"
+      ],
+      "verification_rule": "PostMan",
+      "ux_required": false,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "v2026.09.24: text revised (see CHANGES.md); requirement unchanged.",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0029",
+      "lineage": {
+        "from_code": "C.8",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "C.9",
+      "section": "Section C. Required features. Note for all rich elements: an agent text bubble framing the content MUST immediately precede the rich element (for example \"Please log into your account\" before an OAuth request). Apple feedback 2026 08 25: this framing bubble is verified per element type in the review, and every user action on a rich element MUST be followed by an agent confirmation summary. See C.29 and C.30.",
+      "csv_row": 35,
+      "definition": {
+        "requirement": "Apple Pay Message",
+        "description": "Send Apple Pay payment requests with merchant session handoff, ApplePayPaymentRequest payload, line items, and shipping methods. Refunds are out of scope for the Apple Pay message: they run in a workflow outside Messages for Business (Apple source: AMB canonical v7.0 L5095). Apple Pay requires the Merchant ID registered on the AMB account before sending a request",
+        "key_considerations": "For testing, MSP must have a brand that holds its own Apple Developer account and Apple Pay Merchant ID, not the third-party payment processor's. Payment Processing Certificate enrolment is multi-day. Refunds are handled in a workflow outside Messages for Business. Refund handling is not an in-band AMB feature and is not required within the Apple Pay message\n \n The brand (merchant) owns the Apple Developer account and Apple Pay Merchant ID and shares the Payment Processing Certificate with the MSP. The MSP does not need to hold the processor's enrolments.\n \n Role split: Apple tokenizes the card and issues the merchant session; the MSP transports and authenticates the messages and routes them to the configured endpoints; the brand's own payment gateway and PSP process the charge. Apple Pay in AMB is the presentment and tokenization layer, not the processor. \n \n Prerequisites: Apple Developer account and Apple Pay Merchant ID configured\n Merchant ID must be on the AMB account first.\n\nTwo certificates, two roles: the Merchant Identity Certificate authenticates the merchant session request, and the Payment Processing Certificate lets the payment be processed (Apple source: AMB canonical v7.0 L5147, L5149 to L5173). Which party holds each depends on who requests the merchant session and who decrypts the token; record it per brand in the channel settings (C.25).",
+        "reference": "Chapter 18: Apple Pay (18.1–18.4)",
+        "verification_methods": "PostMan",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "PostMan"
+      ],
+      "verification_rule": "PostMan",
+      "ux_required": false,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "v2026.09.24: text revised (see CHANGES.md); requirement unchanged.",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0030",
+      "lineage": {
+        "from_code": "C.9",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "C.10",
+      "section": "Section C. Required features. Note for all rich elements: an agent text bubble framing the content MUST immediately precede the rich element (for example \"Please log into your account\" before an OAuth request). Apple feedback 2026 08 25: this framing bubble is verified per element type in the review, and every user action on a rich element MUST be followed by an agent confirmation summary. See C.29 and C.30.",
+      "csv_row": 36,
+      "definition": {
+        "requirement": "Authentication Message (new OAuth 2.0)",
+        "description": "Implement the new inline OAuth 2.0 authentication flow, including Password AutoFill and channel settings registration of the OAuth endpoint.",
+        "key_considerations": "The new OAuth flow is required; the legacy flow has been deprecated since February 2023 and must not be implemented. Endpoint registration with Apple is a separate multi day step.\n \n Note: For the demo you have to send a context message to the user and then the Authentication Rich Card before trigger the flow",
+        "reference": "Chapter 20: OAuth 2.0 Authentication Messages (20.1–20.4, incl. 20.4 Password AutoFill Support)\n Chapter 25 > 25.1 Settings Reference (OAuth settings)",
+        "verification_methods": "PostMan",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "PostMan"
+      ],
+      "verification_rule": "PostMan",
+      "ux_required": false,
+      "engagement_state": {
+        "review_notes": "MA: ensure the card calling OAuth is included in the flow.",
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0031",
+      "lineage": {
+        "from_code": "C.10",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "C.11",
+      "section": "Section C. Required features. Note for all rich elements: an agent text bubble framing the content MUST immediately precede the rich element (for example \"Please log into your account\" before an OAuth request). Apple feedback 2026 08 25: this framing bubble is verified per element type in the review, and every user action on a rich element MUST be followed by an agent confirmation summary. See C.29 and C.30.",
+      "csv_row": 37,
+      "definition": {
+        "requirement": "App Extension (or iMessage Apps) (custom InteractiveData)",
+        "description": "Support custom App Extensions using the CustomInteractiveData dictionary with the bid field identifying the App Extension bundle.\n Note: Apple prefers to call them App Extensions rather than iMessage Apps as iMessage is a consumer term\n \n Apple feedback 2026 08 25: show how you envision the App Extension experience end to end, not only the payload mechanics. Walk the reviewer through the intended user journey, the entry point into the extension, what the user sees and does inside it, the data returned to the conversation, and the agent confirmation that follows.",
+        "key_considerations": "Phase 1 demo gate. The bid value identifies a specific Apple-approved App Extension bundle; the demo must use a real, approved bid, not a placeholder.\n To use an example use this: https://register.apple.com/resources/messages/msp-api-tutorial/imessage-apps\n \n Note: For the appId, for testing purposes with the sample app, since it is not published on the App Store, you can use any integer as a placeholder, the gateway does not validate this field. For example, 123456789 works fine.\n \n Regarding production vs sandbox:\n The sample app referenced in the tutorial is intended for testing the mechanics of a custom App Extension integration. If you want a custom App Extension experience in production, you would need to develop and publish your own App Extension to the App Store",
+        "reference": "Chapter 21 > 21.2 When to Use iMessage Apps\n Chapter 21 > 21.4 CustomInteractiveData Fields\n Chapter 21 > 21.5 The bid Field for Custom iMessage Apps",
+        "verification_methods": "PostMan",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "PostMan"
+      ],
+      "verification_rule": "PostMan",
+      "ux_required": false,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do\n \n Include an App Extension experience walkthrough in the demo video.",
+        "video_status": "To Do"
+      },
+      "change_log": "Apple feedback 2026 08 25: showcase the envisioned App Extension experience.\n Apple feedback 2026 08 25: video must include the experience walkthrough.",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0032",
+      "lineage": {
+        "from_code": "C.11",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "C.12",
+      "section": "Section C. Required features. Note for all rich elements: an agent text bubble framing the content MUST immediately precede the rich element (for example \"Please log into your account\" before an OAuth request). Apple feedback 2026 08 25: this framing bubble is verified per element type in the review, and every user action on a rich element MUST be followed by an agent confirmation summary. See C.29 and C.30.",
+      "csv_row": 38,
+      "definition": {
+        "requirement": "Form Message",
+        "description": "Support all page types: splash, select with images (one and several selections), text input, picker, date picker, and summary. Apple has no switch page; model a yes or no as a two option select.",
+        "key_considerations": "Form Message requires iOS 18.4 or later. Fallback (Quick Reply, List Picker, Time Picker, or plain text) is required for pre-iOS-18.4 devices, not optional. Drive the fallback from the parsed capability-list per device.\n Note: Confirm \"Review\" button has to go at the end of the final section to be filled.\n\nSend required explicitly on every field, because Apple defaults it to false. Use regex and keyboardType on text input, pickerTitle on pickers, startDate on date pickers, and per option branching where the flow branches. Set dateFormat explicitly.",
+        "reference": "Chapter 17: Form Messages\n Chapter 17 > 17.2 Top-Level Payload Structure\n Chapter 17 > 17.3 Page Types",
+        "verification_methods": "PostMan",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "PostMan"
+      ],
+      "verification_rule": "PostMan",
+      "ux_required": false,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "v2026.09.24: text revised (see CHANGES.md); requirement unchanged.",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0033",
+      "lineage": {
+        "from_code": "C.12",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "C.13",
+      "section": "Section C. Required features. Note for all rich elements: an agent text bubble framing the content MUST immediately precede the rich element (for example \"Please log into your account\" before an OAuth request). Apple feedback 2026 08 25: this framing bubble is verified per element type in the review, and every user action on a rich element MUST be followed by an agent confirmation summary. See C.29 and C.30.",
+      "csv_row": 39,
+      "definition": {
+        "requirement": "Construct Payload API: App Clip rich links",
+        "description": "Generate App Clip rich link payloads server side by sending the App Clip URL to /constructPayload, then send the returned payload as the rich link so the App Clip opens and runs inside the conversation.",
+        "key_considerations": "The API is the only supported way to build the payload; do not assemble it client side. Required even when App Clips are not a primary surface for the brand. The demonstration needs a working App Clip URL as evidence; one example is Phoenix 2. The card needs the same imaging treatment as every other rich element (C.28) and an agent framing message immediately before it (C.29).\n\nSend the payload /constructPayload returns unchanged. If the call fails, fall back to a manually built rich link with title, URL and a small brand logo (C.28), never to a bare URL. Apple's written fallback advice (addendum 2026 07 28) covers Apple Maps; for this type the fallback is a Messaging Advisory recommendation.",
+        "reference": "Chapter 21 > 21.1 The Construct Payload API: App Clips, Apple Music, and Apple Maps",
+        "verification_methods": "Provide Code, UX Testing",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "Provide Code",
+        "UX Testing"
+      ],
+      "verification_rule": "Provide Code, UX Testing",
+      "ux_required": true,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do"
+      },
+      "change_log": "v2026.09.24: text revised (see CHANGES.md); requirement unchanged.",
+      "ux_surface": "device",
+      "uid": "MSPR-0101",
+      "lineage": {
+        "from_code": "C.13",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "C.14",
+      "section": "Section C. Required features. Note for all rich elements: an agent text bubble framing the content MUST immediately precede the rich element (for example \"Please log into your account\" before an OAuth request). Apple feedback 2026 08 25: this framing bubble is verified per element type in the review, and every user action on a rich element MUST be followed by an agent confirmation summary. See C.29 and C.30.",
+      "csv_row": 40,
+      "definition": {
+        "requirement": "Construct Payload API: Apple Maps rich links",
+        "description": "Generate Apple Maps rich link payloads server side by sending a Maps URL to /constructPayload, so a place or location opens in Maps directly from the conversation.",
+        "key_considerations": "Built through the API like the other two types, and demonstrated separately for Apple review. Use a canonical Apple Maps URL for the place rather than a search string, so the card resolves to a single location. For a brand with many locations the URL has to be generated per conversation from the location the user chose, never hardcoded.\n\nSend the payload /constructPayload returns unchanged. If the call fails, fall back to a manually built rich link with title, URL and a small brand logo (C.28), never to a bare URL.",
+        "reference": "Chapter 21 > 21.1 The Construct Payload API: App Clips, Apple Music, and Apple Maps\n Chapter 9 > 9.5 Apple Maps Rich Links",
+        "verification_methods": "Provide Code, UX Testing",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "Provide Code",
+        "UX Testing"
+      ],
+      "verification_rule": "Provide Code, UX Testing",
+      "ux_required": true,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do"
+      },
+      "change_log": "v2026.09.24: text revised (see CHANGES.md); requirement unchanged.",
+      "ux_surface": "device",
+      "uid": "MSPR-0102",
+      "lineage": {
+        "from_code": "C.14",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "C.15",
+      "section": "Section C. Required features. Note for all rich elements: an agent text bubble framing the content MUST immediately precede the rich element (for example \"Please log into your account\" before an OAuth request). Apple feedback 2026 08 25: this framing bubble is verified per element type in the review, and every user action on a rich element MUST be followed by an agent confirmation summary. See C.29 and C.30.",
+      "csv_row": 41,
+      "definition": {
+        "requirement": "Construct Payload API: Apple Music rich links",
+        "description": "Generate Apple Music rich link payloads server side by sending a music.apple.com URL to /constructPayload. Supported content types are Song, Album, Artist, Playlist, Music Video and Radio Station.",
+        "key_considerations": "Build the storefront URL dynamically from the locale on the inbound message rather than hardcoding a country code, otherwise the card does not render fully and the play button is missing. Take the locale from the value captured at conversation entry (C.19). Demonstrated separately from the App Clip and Apple Maps types.\n\nSend the payload /constructPayload returns unchanged. If the call fails, fall back to a manually built rich link with title, URL and a small brand logo (C.28), never to a bare URL. Apple's written fallback advice (addendum 2026 07 28) covers Apple Maps; for this type the fallback is a Messaging Advisory recommendation.",
+        "reference": "Chapter 21 > 21.1 The Construct Payload API: App Clips, Apple Music, and Apple Maps",
+        "verification_methods": "Provide Code, UX Testing",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "Provide Code",
+        "UX Testing"
+      ],
+      "verification_rule": "Provide Code, UX Testing",
+      "ux_required": true,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do"
+      },
+      "change_log": "v2026.09.24: text revised (see CHANGES.md); requirement unchanged.",
+      "ux_surface": "device",
+      "uid": "MSPR-0103",
+      "lineage": {
+        "from_code": "C.15",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "C.16",
+      "section": "Section C. Required features. Note for all rich elements: an agent text bubble framing the content MUST immediately precede the rich element (for example \"Please log into your account\" before an OAuth request). Apple feedback 2026 08 25: this framing bubble is verified per element type in the review, and every user action on a rich element MUST be followed by an agent confirmation summary. See C.29 and C.30.",
+      "csv_row": 42,
+      "definition": {
+        "requirement": "Outbound typing indicator before every permitted outbound payload (one second for bots)",
+        "description": "Show a typing indicator before every outbound payload, including text, attachments, Quick Reply, List Picker, Time Picker, Form, rich link, Authentication, and Apple Pay. Bots and automations send a one second indicator before each message; each back to back payload gets its own. Live agents send typing_start while they compose and typing_end when they stop. Preserve the 60 second timeout rule. Showing the user's typing in the agent console is C.17.",
+        "key_considerations": "The indicator is itself outbound and MUST pass the same preflight eligibility check as the payload. Emit neither indicator nor payload after close, Leave Conversation, opt-out, or another sending prohibition. Test actual production sequencing and avoid excessive cumulative delay.\n \n Apple feedback 2026 08 25: the typing indicator does not replace the framing bubble. Sequence per rich element is typing indicator, then agent framing text, then the rich element.\n A typing indicator is best effort: if sending it fails, still send the payload. (Apple source: AMB canonical v7.0 L407, L409, L415.)",
+        "reference": "Chapter 11 > 11.2 Outbound (MSP → Apple) (fixed 1-second bot typing indicator)\n\nApple source: AMB canonical v7.0 L407 (agents send typing_start and typing_end), L409 (one second for bots), L415 (60 second timeout).",
+        "verification_methods": "Provide Code, UX Testing",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "Provide Code",
+        "UX Testing"
+      ],
+      "verification_rule": "Provide Code, UX Testing",
+      "ux_required": true,
+      "engagement_state": {
+        "review_notes": "Postman plus UX Testing (timed device recording, back-to-back sequence, and close-during-sequence negative case).",
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "Apple feedback 2026 08 25: framing bubble sequence clarified. v2026.09.24: text revised (see CHANGES.md); requirement unchanged.",
+      "ux_surface": "agent_console",
+      "uid": "MSPR-0037",
+      "lineage": {
+        "from_code": "C.16",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "C.17",
+      "section": "Section C. Required features. Note for all rich elements: an agent text bubble framing the content MUST immediately precede the rich element (for example \"Please log into your account\" before an OAuth request). Apple feedback 2026 08 25: this framing bubble is verified per element type in the review, and every user action on a rich element MUST be followed by an agent confirmation summary. See C.29 and C.30.",
+      "csv_row": 43,
+      "definition": {
+        "requirement": "Inbound typing indicator (when user is typing)",
+        "description": "Show a visible typing indicator when a user is typing on the agent console if there is a human agent reading",
+        "key_considerations": "Show the indicator when typing_start arrives and remove it on typing_end or after 60 seconds without one. Apple documents typing_end for when the user clears the text (L405) and does not say one is sent with the message, so also remove it when the user's message arrives (Apple source: AMB canonical v7.0 L403, L405, L415).",
+        "reference": "Chapter 11 > 11.1 Inbound (Apple → MSP). Apple source: AMB canonical v7.0 L403, L405, L415.",
+        "verification_methods": "Provide Code, UX Testing",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "Provide Code",
+        "UX Testing"
+      ],
+      "verification_rule": "Provide Code, UX Testing",
+      "ux_required": true,
+      "engagement_state": {},
+      "change_log": "v2026.09.24: text revised (see CHANGES.md); requirement unchanged.",
+      "ux_surface": "agent_console",
+      "uid": "MSPR-0110",
+      "lineage": {
+        "from_code": "C.17",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "C.18",
+      "section": "Section C. Required features. Note for all rich elements: an agent text bubble framing the content MUST immediately precede the rich element (for example \"Please log into your account\" before an OAuth request). Apple feedback 2026 08 25: this framing bubble is verified per element type in the review, and every user action on a rich element MUST be followed by an agent confirmation summary. See C.29 and C.30.",
+      "csv_row": 44,
+      "definition": {
+        "requirement": "Routing Using Entry Point Parameters (intentID and groupID)",
+        "description": "Use the intentID and groupID attributes on inbound conversation-start messages to route to the correct queue, bot flow, or agent skill.",
+        "key_considerations": "BCRW (bcrw.apple.com) is the Business Chat era redirect endpoint that turns a URL into a Messages for Business conversation: https://bcrw.apple.com/urn:biz:<business-id>, with optional query parameters biz-intent-id, biz-group-id, and body. On the first inbound message, the MSP reads the intent and group to route the conversation. Parameter values must not contain reserved URI characters (& # [] () {} and /). Note: Apple does not publish the full BCRW acronym expansion, so describe it by function rather than asserting one",
+        "reference": "Chapter 13: Routing with Intent IDs and Group IDs\n Chapter 13 > 13.1 Fields\n Chapter 23 > 23.2 URL Parameters",
+        "verification_methods": "UX Testing",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "UX Testing"
+      ],
+      "verification_rule": "UX Testing",
+      "ux_required": true,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "Apple feedback 2026 08 25: capture device locale at entry.\n Apple feedback 2026 08 25: locale sourcing and fallback rule.",
+      "ux_surface": "device",
+      "uid": "MSPR-0111",
+      "lineage": {
+        "from_code": "C.18",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "C.19",
+      "section": "Section C. Required features. Note for all rich elements: an agent text bubble framing the content MUST immediately precede the rich element (for example \"Please log into your account\" before an OAuth request). Apple feedback 2026 08 25: this framing bubble is verified per element type in the review, and every user action on a rich element MUST be followed by an agent confirmation summary. See C.29 and C.30.",
+      "csv_row": 45,
+      "definition": {
+        "requirement": "Capture the device locale at conversation entry",
+        "description": "Capture the device locale at conversation entry, on the first inbound message, together with intentID and groupID, and persist it on the conversation record so language, formatting and agent skill routing are set from the first reply.",
+        "key_considerations": "Locale is read from the inbound message metadata at entry, not inferred from the phone number or from the brand default. Where locale is absent or unsupported by the brand, fall back to the brand default language and record that the fallback was applied. This can be used for example to select the Apple Music store.",
+        "reference": "Chapter 6 > 6.1 Common Body Fields (locale field)\n Chapter 8 > 8.1 Receiving Messages from Users (intentID/groupID/locale as segmentation keys)",
+        "verification_methods": "Provide Code",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "Provide Code"
+      ],
+      "verification_rule": "Provide Code",
+      "ux_required": false,
+      "engagement_state": {},
+      "change_log": "",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0104",
+      "lineage": {
+        "from_code": "C.19",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "C.20",
+      "section": "Section C. Required features. Note for all rich elements: an agent text bubble framing the content MUST immediately precede the rich element (for example \"Please log into your account\" before an OAuth request). Apple feedback 2026 08 25: this framing bubble is verified per element type in the review, and every user action on a rich element MUST be followed by an agent confirmation summary. See C.29 and C.30.",
+      "csv_row": 46,
+      "definition": {
+        "requirement": "Brand channel settings and complete Client Landing Page Connect flow",
+        "description": "Preserve per-brand channel settings, privacy, Terms of Use, support, and account linking. The Connect handoff MUST demonstrate the steps, MSP authentication, linking of the Apple-provided business identity to the MSP client account, and an explicit successful-connection confirmation using correct Apple Messages for Business naming.",
+        "key_considerations": "Use the exact terms presented by the live Apple/MSP flow; do not conflate display with affirmative acceptance without evidence. Internal test accounts may provide less brand metadata than production accounts. Avoid logging handoff credentials or identifiers.",
+        "reference": "Chapter 25: Channel Settings and Landing Page\n Chapter 25 > 25.1 Settings Reference\n Chapter 25 > 25.2 The Landing Page",
+        "verification_methods": "UX Testing",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "UX Testing"
+      ],
+      "verification_rule": "UX Testing",
+      "ux_required": true,
+      "engagement_state": {
+        "review_notes": "UX Testing from Apple Business Register Connect through success confirmation.",
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "v2026.09.24: text revised (see CHANGES.md); requirement unchanged.",
+      "ux_surface": "device",
+      "uid": "MSPR-0041",
+      "lineage": {
+        "from_code": "C.20",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "C.21",
+      "section": "Section C. Required features. Note for all rich elements: an agent text bubble framing the content MUST immediately precede the rich element (for example \"Please log into your account\" before an OAuth request). Apple feedback 2026 08 25: this framing bubble is verified per element type in the review, and every user action on a rich element MUST be followed by an agent confirmation summary. See C.29 and C.30.",
+      "csv_row": 47,
+      "definition": {
+        "requirement": "The Client Landing Page must be demonstrated via the 'Connect' button in the AMB account",
+        "description": "MSP authentication, linking of the Apple-provided business identity to the MSP client account, and an explicit successful-connection confirmation using correct Apple Messages for Business naming. Start from 'Connect' in the AMB account; test account OK.",
+        "key_considerations": "The brand can connect to the MSP and associate its Brand ID into the MSP console",
+        "reference": "Chapter 25 > 25.2 The Landing Page (MSP client landing page Connect handoff)\n\nApple source: AMB canonical v7.0 L6763 (Step 5: Verify MSP Connection).",
+        "verification_methods": "UX Testing",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "UX Testing"
+      ],
+      "verification_rule": "UX Testing",
+      "ux_required": true,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "v2026.09.24: text revised (see CHANGES.md); requirement unchanged.",
+      "ux_surface": "device",
+      "uid": "MSPR-0047",
+      "lineage": {
+        "from_code": "C.21",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "C.22",
+      "section": "Section C. Required features. Note for all rich elements: an agent text bubble framing the content MUST immediately precede the rich element (for example \"Please log into your account\" before an OAuth request). Apple feedback 2026 08 25: this framing bubble is verified per element type in the review, and every user action on a rich element MUST be followed by an agent confirmation summary. See C.29 and C.30.",
+      "csv_row": 48,
+      "definition": {
+        "requirement": "Device Capabilities",
+        "description": "Parse the per-device capability-list on every inbound and provide alternate handling for unsupported features.",
+        "key_considerations": "capability-list is per device, not per user. Keep the latest value per conversation, keyed by the customer's opaque ID, and refresh it on every inbound, because the customer can switch devices. The opaque ID is sourceId on an inbound message and destinationId on the MSP's reply; the inbound destinationId is the business ID (Apple source: AMB canonical v7.0 L309, L331). Invitations differ: destinationId is the customer's phone number and no opaque ID exists when the Invitation is sent (Apple source: AMB canonical v7.0 L3930), so there is no conversation whose capability-list could apply; Invitation eligibility follows C.23, not a cached capability-list. Drives Form Message gating and any future feature behind a capability flag.\n \n Apple feedback 2026 08 25: capture device locale alongside the capability list at entry and keep both with the conversation, keyed by the customer's opaque ID as above. Locale drives language selection and localized template choice; capability drives element gating.",
+        "reference": "Chapter 5 > 5.3 The capability-list Header and Device Capability Detection",
+        "verification_methods": "PostMan",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "PostMan"
+      ],
+      "verification_rule": "PostMan",
+      "ux_required": false,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "Apple feedback 2026 08 25: locale captured with capability list. v2026.09.24: text revised (see CHANGES.md); requirement unchanged.",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0042",
+      "lineage": {
+        "from_code": "C.22",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "C.23",
+      "section": "Section C. Required features. Note for all rich elements: an agent text bubble framing the content MUST immediately precede the rich element (for example \"Please log into your account\" before an OAuth request). Apple feedback 2026 08 25: this framing bubble is verified per element type in the review, and every user action on a rich element MUST be followed by an agent confirmation summary. See C.29 and C.30.",
+      "csv_row": 49,
+      "definition": {
+        "requirement": "Invitation messages with explicit consent, decline, no-response, opt-out, and undeliverable states",
+        "description": "Preserve Apple-managed templates, phone-number addressing, gated approval, platform floors, and response-code semantics. Model pending, accepted, declined/No, no-response, opt-out, user-preference-undeliverable, and sender/transport-error states distinctly. When the user selects No, no conversation message or opaque user ID is delivered for display in the MSP platform and the platform MUST NOT continue messaging. Conversational sending becomes eligible only after the user initiates a new conversation.\n Ensure Reference ID and other parameters are considered for routing\n \n Once a user accepts a Business Invitation, an agent message MUST follow that states plainly what the user has signed up for, including message category and expected frequency. See C.32.",
+        "key_considerations": "Invitation 410 is a missing/incorrect `message-type` header, not opt-out. User-preference undeliverable is 404. Do not invent an opaque-ID-to-phone join. Store pre-conversation suppression per brand and normalized destination. A later user-initiated conversation restores conversational reply eligibility but does not automatically recreate campaign or notification consent.\n \n \n it is important that an agent message is sent right after a user accepts the invitation with Yes , the agent must explain what the user is signing for, receive notifications, alerts or anything else relevant",
+        "reference": "Chapter 22: Invitation Messages (22.1–22.7, incl. 22.2a Published Templates and 22.4 Opt-In Requirements)",
+        "verification_methods": "PostMan, Provide Code",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "PostMan",
+        "Provide Code"
+      ],
+      "verification_rule": "PostMan, Provide Code",
+      "ux_required": false,
+      "engagement_state": {
+        "review_notes": "Postman plus Provide Code (state-transition and negative response-code tests).",
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "Apple feedback 2026 08 25: post acceptance consent recap required, detailed in C.32. v2026.09.24: text revised (see CHANGES.md); requirement unchanged.",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0043",
+      "lineage": {
+        "from_code": "C.23",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "C.24",
+      "section": "Section C. Required features. Note for all rich elements: an agent text bubble framing the content MUST immediately precede the rich element (for example \"Please log into your account\" before an OAuth request). Apple feedback 2026 08 25: this framing bubble is verified per element type in the review, and every user action on a rich element MUST be followed by an agent confirmation summary. See C.29 and C.30.",
+      "csv_row": 50,
+      "definition": {
+        "requirement": "Preflight block and queue suppression after close",
+        "description": "On close, block every live-agent, bot, automation, typing, scheduled, queued, campaign, CSAT, retry, and replay path before an Apple API call. Suppress or terminally cancel queued work. Restore conversational sending only after a qualifying user-initiated restart and only when no stronger opt-out or consent prohibition remains.",
+        "key_considerations": "Handle close-versus-send and close-versus-worker races atomically. A 410 received on an organic send reconciles local state if a close event was delayed or missed; never reuse the invitation meaning of 410.",
+        "reference": "Chapter 24 > 24.3 Receiving and Handling the Close Event (Required platform actions: platform-wide hard-block, cancel scheduled sends, agent console lock)",
+        "verification_methods": "UX Testing, Provide Code",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "UX Testing",
+        "Provide Code"
+      ],
+      "verification_rule": "UX Testing, Provide Code",
+      "ux_required": true,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "",
+      "ux_surface": "device",
+      "uid": "MSPR-0044",
+      "lineage": {
+        "from_code": "C.24",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "C.25",
+      "section": "Section C. Required features. Note for all rich elements: an agent text bubble framing the content MUST immediately precede the rich element (for example \"Please log into your account\" before an OAuth request). Apple feedback 2026 08 25: this framing bubble is verified per element type in the review, and every user action on a rich element MUST be followed by an agent confirmation summary. See C.29 and C.30.",
+      "csv_row": 51,
+      "definition": {
+        "requirement": "Channel Settings must capture brand-specific config for Apple Pay, App Extension and Authentication payloads",
+        "description": "Brand config for Apple Pay, App Extension (App Extension), Auth.",
+        "key_considerations": "This is at the brand level and it is captured on the MSP when selecting the brand in their brand console",
+        "reference": "Chapter 25 > 25.1 Settings Reference (Apple Pay, OAuth, iMessage App Extension fields)\n Chapter 18 > 18.1 Prerequisites\n\nApple source: AMB canonical v7.0 L4106 (the MSP keeps channel specific settings for each business).",
+        "verification_methods": "Provide Code",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "Provide Code"
+      ],
+      "verification_rule": "Provide Code",
+      "ux_required": false,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "v2026.09.24: text revised (see CHANGES.md); requirement unchanged.",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0105",
+      "lineage": {
+        "from_code": "C.25",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "C.26",
+      "section": "Section C. Required features. Note for all rich elements: an agent text bubble framing the content MUST immediately precede the rich element (for example \"Please log into your account\" before an OAuth request). Apple feedback 2026 08 25: this framing bubble is verified per element type in the review, and every user action on a rich element MUST be followed by an agent confirmation summary. See C.29 and C.30.",
+      "csv_row": 52,
+      "definition": {
+        "requirement": "Brands must have a GUI to create and edit rich objects without writing JSON or code",
+        "description": "List/Time Picker, Quick Reply, Form and all rich elements available to be built on building blocks. Demo expected.",
+        "key_considerations": "To discuss but basically is like Chatwoot for example\n Note as AI agents are able to create flows, this can be discussed",
+        "reference": "Chapter 2 > 2.2 What Apple Expects from an Approved MSP, 'Rich object payload builder' bullet; see also §2.2 closing paragraph (demonstrable support for all interactive types).\n\nApple source: AMB canonical v7.0 L128 (the MSP provides easy to use tools to build rich object payloads).",
+        "verification_methods": "UX Testing",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "UX Testing"
+      ],
+      "verification_rule": "UX Testing",
+      "ux_required": true,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "v2026.09.24: text revised (see CHANGES.md); requirement unchanged.",
+      "ux_surface": "device",
+      "uid": "MSPR-0046",
+      "lineage": {
+        "from_code": "C.26",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "C.27",
+      "section": "Section C. Required features. Note for all rich elements: an agent text bubble framing the content MUST immediately precede the rich element (for example \"Please log into your account\" before an OAuth request). Apple feedback 2026 08 25: this framing bubble is verified per element type in the review, and every user action on a rich element MUST be followed by an agent confirmation summary. See C.29 and C.30.",
+      "csv_row": 53,
+      "definition": {
+        "requirement": "Consented, paced, cancellable, and auditable bulk Invitation campaigns",
+        "description": "Support eligible Invitation contact lists and campaign orchestration at scale with per-record validation, consent and suppression checks at send time, deduplication, resumable batching, progressive ramp-up, staggered submissions, bounded retries, cancellation, per-brand fairness, and auditable per-record results. The platform sends individually addressed, approved Apple Invitation requests in paced batches; this item does not assert a separate Apple bulk API.",
+        "key_considerations": "Bulk never waives E.3/E.4/E.5 or gated Invitation approval. Treat 1,000 messages/second as a provisional aggregate per-MSP target, not a hard published limit; keep it configurable and coordinate large/time-sensitive sends with Apple. Apple publishes no 429. An opt-out or close racing a campaign MUST purge unsent work.",
+        "reference": "Chapter 22 > 22.3 Sending an Invitation\n Chapter 22 > 22.4 Opt-In Requirements (paced individual sends, double opt-in, no bulk endpoint)\n\nSource split: individually addressed Invitations with opt in are Apple (Chapter 22.3, 22.4). The campaign engine (batching, ramp up, cancellation, fairness, the 1,000 per second target) is a Messaging Advisory requirement; Apple publishes no bulk endpoint and no rate limit.",
+        "verification_methods": "Provide Code, PostMan",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "Provide Code",
+        "PostMan"
+      ],
+      "verification_rule": "Provide Code, PostMan",
+      "ux_required": false,
+      "engagement_state": {
+        "review_notes": "Postman plus Provide Code (large-list pacing, fairness, cancellation, fault-injection, deduplication, and opt-out-race tests) plus Verbal on Apple Policy.",
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "v2026.09.24: text revised (see CHANGES.md); requirement unchanged.",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0048",
+      "lineage": {
+        "from_code": "C.27",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "C.28",
+      "section": "Section C. Required features. Note for all rich elements: an agent text bubble framing the content MUST immediately precede the rich element (for example \"Please log into your account\" before an OAuth request). Apple feedback 2026 08 25: this framing bubble is verified per element type in the review, and every user action on a rich element MUST be followed by an agent confirmation summary. See C.29 and C.30.",
+      "csv_row": 54,
+      "definition": {
+        "requirement": "Rich Card imaging for every element with exception Apple Pay and OAuth",
+        "description": "Apple feedback 2026 08 25: when falling back from a rich element to a standard image, use a small brand fallback logo under 150 pixels so the rich card renders in its small form and does not consume the screen. Oversized fallback images produce a large card that dominates the thread and reads as a broken experience.",
+        "key_considerations": "Rich card elements should not use large images otherwise will take over a big section of the user's interface. Use large images only for RichLinks with relevant images for the communication  or videos , for the rest use small images below 150 pixels.\n The only exception is Apple Pay and OAuth as they come with their own predefined image",
+        "reference": "Chapter 2 > 2.4 The Experience Review (v3.1 checklist: thumbnail on every interactive feature; logo fallback square/rectangular, under 150 px, icon-style)\n Chapter 9 > 9.2 Image Requirements\n\nApple source: AMB canonical v7.0 L1307 and L7912 (width under 150 px renders as an icon).",
+        "verification_methods": "UX Testing, Provide Code",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "UX Testing",
+        "Provide Code"
+      ],
+      "verification_rule": "UX Testing, Provide Code",
+      "ux_required": true,
+      "engagement_state": {},
+      "change_log": "v2026.09.24: text revised (see CHANGES.md); requirement unchanged. v2026.10.06: text revised from the owner's sheet of 2026-10-06; requirement unchanged.",
+      "ux_surface": "device",
+      "uid": "MSPR-0049",
+      "lineage": {
+        "from_code": "C.28",
+        "from_version": "v2026.09.28",
+        "relation": "edited"
+      }
+    },
+    {
+      "item_code": "C.29",
+      "section": "Section C. Required features. Note for all rich elements: an agent text bubble framing the content MUST immediately precede the rich element (for example \"Please log into your account\" before an OAuth request). Apple feedback 2026 08 25: this framing bubble is verified per element type in the review, and every user action on a rich element MUST be followed by an agent confirmation summary. See C.29 and C.30.",
+      "csv_row": 55,
+      "definition": {
+        "requirement": "Agent framing message immediately before every rich element",
+        "description": "Every rich or interactive element MUST be preceded by an agent text bubble that frames what the user is about to see and why. Applies to Rich Link, Quick Reply, List Picker, Time Picker, Form, Apple Pay, Authentication, App Extension and attachments, from both automation and live agents.",
+        "key_considerations": "The framing bubble is a separate outbound payload and carries its own typing indicator (C.16). Keep it to one short sentence naming the action and the reason, for example \"Please log into your account so I can pull up your order\". A rich element that arrives with no framing bubble is a review failure. The framing bubble MUST pass the same preflight eligibility check as the element itself and MUST NOT be sent after close, Leave Conversation or opt out.",
+        "reference": "Chapter 2 > 2.4 The Experience Review (v3.1 checklist: introductory text before every interactive feature, including Rich Links)",
+        "verification_methods": "UX Testing, Provide Code",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "UX Testing",
+        "Provide Code"
+      ],
+      "verification_rule": "UX Testing, Provide Code",
+      "ux_required": true,
+      "engagement_state": {
+        "review_notes": "Verified per element type during the Integration Review.",
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "Apple feedback 2026 08 25: new requirement row. v2026.09.24: text revised (see CHANGES.md); requirement unchanged.",
+      "ux_surface": "device",
+      "uid": "MSPR-0050",
+      "lineage": {
+        "from_code": "C.29",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "C.30",
+      "section": "Section C. Required features. Note for all rich elements: an agent text bubble framing the content MUST immediately precede the rich element (for example \"Please log into your account\" before an OAuth request). Apple feedback 2026 08 25: this framing bubble is verified per element type in the review, and every user action on a rich element MUST be followed by an agent confirmation summary. See C.29 and C.30.",
+      "csv_row": 56,
+      "definition": {
+        "requirement": "Agent confirmation summary after every user action on a rich element",
+        "description": "After a user taps, selects, submits or completes any rich element, the platform MUST send an agent confirmation message that summarises what the user just chose or did, before moving the conversation forward.",
+        "key_considerations": "Applies to Quick Reply taps, List Picker selections, Time Picker slots, Form submissions, Apple Pay results, Authentication completion and App Extension returns. The summary restates the captured value in plain language, for example \"Thanks, I have booked Tuesday 14 October at 10:00\". Success and failure both need a confirmation; a failed or cancelled action MUST say so and offer the next step. This closes the loop for the user and is the counterpart to the framing bubble",
+        "reference": "Apple source: AMB canonical v7.0 L7730 (Acknowledge choice immediately). Apple review feedback 2026 08 25.",
+        "verification_methods": "UX Testing, Provide Code",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "UX Testing",
+        "Provide Code"
+      ],
+      "verification_rule": "UX Testing, Provide Code",
+      "ux_required": true,
+      "engagement_state": {
+        "review_notes": "New from Apple feedback. Show at least three element types confirming in the demo video. Pending Apple written confirmation (ASK_APPLE Q5). Not yet Apple-sourced; do not cite to brands as an Apple requirement.",
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "Apple feedback 2026 08 25: new requirement row. v2026.09.24: text revised (see CHANGES.md); requirement unchanged.",
+      "ux_surface": "device",
+      "uid": "MSPR-0051",
+      "lineage": {
+        "from_code": "C.30",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "C.31",
+      "section": "Section C. Required features. Note for all rich elements: an agent text bubble framing the content MUST immediately precede the rich element (for example \"Please log into your account\" before an OAuth request). Apple feedback 2026 08 25: this framing bubble is verified per element type in the review, and every user action on a rich element MUST be followed by an agent confirmation summary. See C.29 and C.30.",
+      "csv_row": 57,
+      "definition": {
+        "requirement": "Per brand library of icons and image assets",
+        "description": "Maintain a per brand library of icons, logos and image assets that the platform draws on for rich elements, List Picker rows, the user bubble imagery that follows upon selection, rich link previews and fallback images. Brand users manage the library from the brand console; no code or JSON editing.",
+        "key_considerations": "Assets are scoped to the brand, never shared across tenants. Store at least a small fallback logo under 150 pixels, a standard rich link preview image and the per row icons used by List Picker. Enforce format, dimension and file size validation on upload, and version assets so a change is traceable.",
+        "reference": "Apple review feedback 2026 08 25 (the row's change log). Supported by Apple source: AMB canonical v7.0 L128 (a library of ready to use rich objects for the business) and L1307 (under 150 px renders as an icon). The asset library itself, with versioning and upload validation, is a Messaging Advisory requirement.",
+        "verification_methods": "UX Testing, Provide Code",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "UX Testing",
+        "Provide Code"
+      ],
+      "verification_rule": "UX Testing, Provide Code",
+      "ux_required": true,
+      "engagement_state": {
+        "review_notes": "New from Apple feedback. Demonstrate the library and an asset swap in the brand console.",
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "Apple feedback 2026 08 25: new requirement row. v2026.09.24: text revised (see CHANGES.md); requirement unchanged.",
+      "ux_surface": "agent_console",
+      "uid": "MSPR-0052",
+      "lineage": {
+        "from_code": "C.31",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "C.32",
+      "section": "Section C. Required features. Note for all rich elements: an agent text bubble framing the content MUST immediately precede the rich element (for example \"Please log into your account\" before an OAuth request). Apple feedback 2026 08 25: this framing bubble is verified per element type in the review, and every user action on a rich element MUST be followed by an agent confirmation summary. See C.29 and C.30.",
+      "csv_row": 58,
+      "definition": {
+        "requirement": "Post acceptance consent recap after a Business Invitation is accepted",
+        "description": "Once a user accepts a Business Invitation, the platform MUST send an agent message that explains plainly what the user has signed up for, including the message category and the expected frequency, for example \"You will now receive delivery updates for your orders, usually two or three messages per order\".",
+        "key_considerations": "The recap is sent immediately after acceptance and before any notification traffic begins. It MUST state the purpose or category, a realistic frequency, and how to stop, using the approved opt out wording from E.5. Store the recap text and version with the consent record (E.4). Acceptance alone is not a disclosure; the recap is what makes the consent auditable and defensible. Do not send a recap on decline, no response, opt out or undeliverable states (C.23).",
+        "reference": "Chapter 22 > 22.4 Opt-In Requirements. Apple source: AMB canonical v7.0 L8698 (example recap: \"You're now signed up for order status notifications. Reply STOP anytime to turn off.\"). Apple review feedback 2026 08 25.",
+        "verification_methods": "UX Testing, Provide Code",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "UX Testing",
+        "Provide Code"
+      ],
+      "verification_rule": "UX Testing, Provide Code",
+      "ux_required": true,
+      "engagement_state": {
+        "review_notes": "New from Apple feedback. Show the recap message in the invitation demo video.",
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "Apple feedback 2026 08 25: new requirement row. v2026.09.24: text revised (see CHANGES.md); requirement unchanged.",
+      "ux_surface": "device",
+      "uid": "MSPR-0053",
+      "lineage": {
+        "from_code": "C.32",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "D.1",
+      "section": "Section D. Device capability detection and payload gating",
+      "csv_row": 60,
+      "definition": {
+        "requirement": "Parse capability-list on every inbound",
+        "description": "Extract the capability-list array from every inbound message and persist it against the destinationId / sourceId for use on the next outbound.",
+        "key_considerations": "Capabilities can change between messages (user switches device). Always use the most recent value, not a cached one from initial conversation start.",
+        "reference": "Chapter 5 > 5.3 The capability-list Header and Device Capability Detection",
+        "verification_methods": "PostMan",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "PostMan"
+      ],
+      "verification_rule": "PostMan",
+      "ux_required": false,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0054",
+      "lineage": {
+        "from_code": "D.1",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "D.2",
+      "section": "Section D. Device capability detection and payload gating",
+      "csv_row": 61,
+      "definition": {
+        "requirement": "Maintain an OS-minimum / device-scope matrix",
+        "description": "Maintain a matrix mapping each interactive feature to its minimum OS version and supported device scope (iPhone, iPad, Mac, Watch).\n Note: (watchOS has no published row); Forms and App Extensions are iPhone and iPad only.",
+        "key_considerations": "Examples: Form Message is iOS 18.4 or later, Invitations require iOS 18.0 or later. Update the matrix whenever Apple ships new feature OS floors. Drive the bot's branch logic and the agent console's affordance lock from this matrix.",
+        "reference": "Chapter 5 > 5.3 The capability-list Header and Device Capability Detection (Values and Supported Features)",
+        "verification_methods": "Provide Code",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "Provide Code"
+      ],
+      "verification_rule": "Provide Code",
+      "ux_required": false,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "No needed"
+      },
+      "change_log": "",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0055",
+      "lineage": {
+        "from_code": "D.2",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "D.3",
+      "section": "Section D. Device capability detection and payload gating",
+      "csv_row": 62,
+      "definition": {
+        "requirement": "Human Agent Console rich elements menu",
+        "description": "Allow human agents to easily create and send rich elements from the agent console",
+        "key_considerations": "Drop down list with all key rich elements including construct payload elements.\n Note: This is very important",
+        "reference": "Chapter 2 > 2.2 What Apple Expects from an Approved MSP (live agent console, rich object builder) — console UI design itself is platform-side (verify section)",
+        "verification_methods": "UX Testing, Provide Code",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "UX Testing",
+        "Provide Code"
+      ],
+      "verification_rule": "UX Testing, Provide Code",
+      "ux_required": true,
+      "engagement_state": {},
+      "change_log": "",
+      "ux_surface": "agent_console",
+      "uid": "MSPR-0106",
+      "lineage": {
+        "from_code": "D.3",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "D.4",
+      "section": "Section D. Device capability detection and payload gating",
+      "csv_row": 63,
+      "definition": {
+        "requirement": "Human Agent console capability lock",
+        "description": "The human agent console must disable or hide UI affordances for any feature the recipient device does not support.",
+        "key_considerations": "Hard-disable, not warn-and-allow. An agent should not be able to send a Form Message to an iOS 17 device by accident; instead it sends alternative elements like a Quick Reply, for example",
+        "reference": "Chapter 5 > 5.3 The capability-list Header and Device Capability Detection (What Your Platform Must Do)",
+        "verification_methods": "UX Testing",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "UX Testing"
+      ],
+      "verification_rule": "UX Testing",
+      "ux_required": true,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "",
+      "ux_surface": "both",
+      "uid": "MSPR-0107",
+      "lineage": {
+        "from_code": "D.4",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "D.5",
+      "section": "Section D. Device capability detection and payload gating",
+      "csv_row": 64,
+      "definition": {
+        "requirement": "Bot or automation capability switcher",
+        "description": "This is for AI automated agents. Bot flows must include a capability-aware branch that swaps Form Message for Quick Reply, List Picker, Time Picker, or plain text when the recipient cannot render the preferred type.",
+        "key_considerations": "This is a smart function of AI agents that can identify the right payload to be presented to end users. Switching must happen at send time, using the most recent capability-list, not at flow-design time.",
+        "reference": "Chapter 5 > 5.3 The capability-list Header and Device Capability Detection (Fallback Strategy)\n Chapter 17 > 17.5 Fallback for Devices Without FORM",
+        "verification_methods": "UX Testing",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "UX Testing"
+      ],
+      "verification_rule": "UX Testing",
+      "ux_required": true,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "",
+      "ux_surface": "device",
+      "uid": "MSPR-0058",
+      "lineage": {
+        "from_code": "D.5",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "D.6",
+      "section": "Section D. Device capability detection and payload gating",
+      "csv_row": 65,
+      "definition": {
+        "requirement": "Fallback decision tree",
+        "description": "Document and implement a fallback decision tree for every interactive message type: preferred type, fallback type or sequence of types, and user-facing copy variants.",
+        "key_considerations": "Tree is per feature and per OS floor. Keep it versioned. Reviewers may ask to see the tree itself, not just its outputs. Document the explicit fallbacks: when Form is absent, send each question as a separate object; convert Select or Picker pages to a Quick Reply with up to 5 options, or a List Picker for longer lists; use a Time Picker in place of a Date Picker; send Input pages as a text message. The same use case must complete on a device that does not support the preferred feature.",
+        "reference": "Chapter 5 > 5.3 The capability-list Header and Device Capability Detection (Fallback Strategy)\n Chapter 17 > 17.5 Fallback for Devices Without FORM",
+        "verification_methods": "Provide Code",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "Provide Code"
+      ],
+      "verification_rule": "Provide Code",
+      "ux_required": false,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "Apple feedback 2026 08 25: small fallback logo under 150 pixels.",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0059",
+      "lineage": {
+        "from_code": "D.6",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "E.1",
+      "section": "Section E. Policy, consent, conversational design",
+      "csv_row": 67,
+      "definition": {
+        "requirement": "Live agent availability",
+        "description": "By default, a live human agent must be available during stated business hours. If there are limitations, those need to be discussed with Apple's AMB team on a case by case basis.",
+        "key_considerations": "The agent escalation path must reach a real human within business hours. If an exemption is granted, Section F replaces this with structured callback or email via form options.",
+        "reference": "Chapter 26 > 26.1 Live Agent Requirement\n Chapter 2 > 2.3 Brand Onboarding Checklist",
+        "verification_methods": "Verbal On Apple Policy",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "Verbal On Apple Policy"
+      ],
+      "verification_rule": "Verbal On Apple Policy",
+      "ux_required": false,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0060",
+      "lineage": {
+        "from_code": "E.1",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "E.2",
+      "section": "Section E. Policy, consent, conversational design",
+      "csv_row": 68,
+      "definition": {
+        "requirement": "Bot and automation rules",
+        "description": "The bot must identify itself as automated, must not impersonate a human, and must always provide a path to escalation (human or, under exemption, callback or email).",
+        "key_considerations": "Apple reviewers test this with explicit prompts (e.g. 'are you a bot?'). The bot must answer truthfully.",
+        "reference": "Chapter 26 > 26.1 Live Agent Requirement (auto-reply: true header, triage and handoff)\n Chapter 2 > 2.4 The Experience Review (automated agent disclosure)",
+        "verification_methods": "Verbal On Apple Policy",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "Verbal On Apple Policy"
+      ],
+      "verification_rule": "Verbal On Apple Policy",
+      "ux_required": false,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0061",
+      "lineage": {
+        "from_code": "E.2",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "E.3",
+      "section": "Section E. Policy, consent, conversational design",
+      "csv_row": 69,
+      "definition": {
+        "requirement": "Messaging restrictions",
+        "description": "No SMS-style marketing blasts. No unsolicited outbound. Outbound is permitted only as part of an ongoing user-initiated conversation, or via approved Invitation Message templates.",
+        "key_considerations": "Approved Invitation templates are the only sanctioned business-initiated message path; everything else is reactive. Reviewers actively look for unsolicited outbound.",
+        "reference": "Chapter 26 > 26.2 Messaging Restrictions",
+        "verification_methods": "Verbal On Apple Policy",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "Verbal On Apple Policy"
+      ],
+      "verification_rule": "Verbal On Apple Policy",
+      "ux_required": false,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0062",
+      "lineage": {
+        "from_code": "E.3",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "E.4",
+      "section": "Section E. Policy, consent, conversational design",
+      "csv_row": 70,
+      "definition": {
+        "requirement": "Auditable opt-in before automated notifications, invitations, lists, or campaigns",
+        "description": "Require a current opt-in record before each non-transactional automated notification, Invitation list, or campaign. Record brand, channel, purpose/category, destination/subject, collection source, timestamp, disclosure/version, and revocation state. Apple may accept consent collected through multiple business channels when a valid record exists.",
+        "key_considerations": "Consent is per brand, channel, and purpose. Never infer campaign consent from a prior conversation, invitation acceptance, reachability window, or another channel. The schema is an MA/platform control; jurisdiction-specific legal and TCPA review remains independent. Scope records by tenant and retain immutable audit history.\n \n Apple feedback 2026 08 25: acceptance of a Business Invitation MUST be followed by a user facing recap of scope and frequency (C.32). The recap is a disclosure obligation and is stored with the consent record; it does not by itself widen consent beyond the accepted purpose.",
+        "reference": "Chapter 26 > 26.3 Consent Requirements\n Chapter 22 > 22.4 Opt-In Requirements",
+        "verification_methods": "Verbal On Apple Policy, Provide Code",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "Verbal On Apple Policy",
+        "Provide Code"
+      ],
+      "verification_rule": "Verbal On Apple Policy, Provide Code",
+      "ux_required": false,
+      "engagement_state": {
+        "review_notes": "Verbal on Apple Policy plus Provide Code (consent-ledger and negative campaign tests).",
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "Apple feedback 2026 08 25: recap stored with the consent record. v2026.09.24: text revised (see CHANGES.md); requirement unchanged.",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0063",
+      "lineage": {
+        "from_code": "E.4",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "E.5",
+      "section": "Section E. Policy, consent, conversational design",
+      "csv_row": 71,
+      "definition": {
+        "requirement": "Immediate brand-wide opt-out with configurable, non-weakening compliance copy",
+        "description": "Preserve Leave Conversation and case-insensitive STOP, UNSUBSCRIBE, and QUIT handling across bot, agent, campaign, retry, replay, scheduled, and automation paths. Stop applies to the brand, not only a thread. First-message and opt-out compliance copy may be configured per brand, but mandatory disclosure, automation identification, trigger coverage, and processing cannot be removed.",
+        "key_considerations": "Version configuration and audit changes. Reset each state separately: a later user-initiated conversation restores permission to reply within that conversation, like the restart after Leave Conversation or STOP, but does not automatically restore separate notification/campaign consent. Cross-reference C.23 for pre-conversation phone suppression and C.4 for close.",
+        "reference": "Chapter 26 > 26.4 Trigger Words (unsubscribe / stop / end)\n Chapter 24 > 24.3 Receiving and Handling the Close Event (platform-wide hard-block)\n Chapter 22 > 22.5 The CloseSession Webhook",
+        "verification_methods": "Verbal On Apple Policy, Provide Code, PostMan",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "Verbal On Apple Policy",
+        "Provide Code",
+        "PostMan"
+      ],
+      "verification_rule": "Verbal On Apple Policy, Provide Code, PostMan",
+      "ux_required": false,
+      "engagement_state": {
+        "review_notes": "Verbal on Apple Policy plus Postman plus Provide Code (opt-out/send race, queued-campaign purge, localization, and no-consent-reset tests).",
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0064",
+      "lineage": {
+        "from_code": "E.5",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "E.6",
+      "section": "Section E. Policy, consent, conversational design",
+      "csv_row": 72,
+      "definition": {
+        "requirement": "Trigger words",
+        "description": "Implement Apple's trigger word matrix (HELP, STOP, AGENT, REPRESENTATIVE, and similar). Each maps to a defined behaviour: escalate, opt out, or contextual help.",
+        "key_considerations": "Default behaviour matrix is published by Apple. Brands may extend but not weaken it. Case-insensitive matching; allow leading or trailing whitespace.",
+        "reference": "Chapter 26 > 26.4 Trigger Words",
+        "verification_methods": "Verbal On Apple Policy",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "Verbal On Apple Policy"
+      ],
+      "verification_rule": "Verbal On Apple Policy",
+      "ux_required": false,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0065",
+      "lineage": {
+        "from_code": "E.6",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "E.7",
+      "section": "Section E. Policy, consent, conversational design",
+      "csv_row": 73,
+      "definition": {
+        "requirement": "PII request protocol",
+        "description": "Never request sensitive PII (full Social Security Number, full card number, government ID number, account password) in plain conversation. Use Authentication Message, Apple Pay Message, or Form Message instead.",
+        "key_considerations": "This is a hard rule. Agent console templates must enforce it; bot flows must route any such collection to the appropriate secure message type.",
+        "reference": "Chapter 20: OAuth 2.0 Authentication Messages (secure credential-capture mechanism)\n Note: an explicit 'no sensitive PII in plain chat' rule is not stated in the guide.",
+        "verification_methods": "Verbal On Apple Policy",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "Verbal On Apple Policy"
+      ],
+      "verification_rule": "Verbal On Apple Policy",
+      "ux_required": false,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "Verified"
+      },
+      "change_log": "",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0066",
+      "lineage": {
+        "from_code": "E.7",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "E.8",
+      "section": "Section E. Policy, consent, conversational design",
+      "csv_row": 74,
+      "definition": {
+        "requirement": "Brand privacy and Terms of Use display",
+        "description": "The MSP should get access to brand's Privacy Policy and Terms of Use from the respective brand's AMB landing page and from the conversation entry context. And display them in the first conversation with the user or when the terms and policy changes.",
+        "key_considerations": "Display is via the channel settings page. The conversation itself should not reproduce policy text in chat; it should link out to the canonical hosted page.\n Recommended to send the Privacy and Terms of Use on first message through a rich link and only when the terms change\n\nDo not show policy style statements in the chat, such as \"data rates may apply\" or \"messaging rates may apply\": they relate to SMS and are not appropriate for Apple Messages for Business (Apple source: AMB canonical v7.0 L8418, L8420). E.8 is about the brand's own Terms of Use and Privacy Policy; naming is E.9.",
+        "reference": "Chapter 25 > 25.2 The Landing Page (consumer-facing page hosts Privacy Policy and Terms; policy rich link at first engagement and on change)",
+        "verification_methods": "Verbal On Apple Policy",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "Verbal On Apple Policy"
+      ],
+      "verification_rule": "Verbal On Apple Policy",
+      "ux_required": false,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "Verified"
+      },
+      "change_log": "v2026.09.28 owner decision: guidance added; requirement unchanged. v2026.10.06: text revised from the owner's sheet of 2026-10-06; requirement unchanged.",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0067",
+      "lineage": {
+        "from_code": "E.8",
+        "from_version": "v2026.09.28",
+        "relation": "edited"
+      }
+    },
+    {
+      "item_code": "E.9",
+      "section": "Section E. Policy, consent, conversational design",
+      "csv_row": 75,
+      "definition": {
+        "requirement": "Correct Apple Messages for Business naming without confusing Apple Business or iMessage",
+        "description": "Use “Apple Messages for Business” as the priority product/channel name in customer-facing, public, onboarding, marketing, platform, and Integration Review surfaces. When the full name does not fit the available wording or label, “Apple Messages” is the approved alternative—for example, “Apple Messages user.” Do not call the channel “Apple Business,” “Apple Business Chat,” or “iMessage,” and do not imply Apple endorsement. “Apple Business” now names a separate Apple platform. In customer-facing explanatory copy prefer “app extension”; preserve Apple's exact `App Extension`, `CustomInteractiveData`, and `bid` terminology in technical schema, code, and evidence.\n \n Apple feedback 2026 08 25: in the recommended Apple Messages for Business text treatment there MUST be no blue bubble iconography and no blue logos. Do not use a blue speech bubble, a blue message glyph, or any blue tinted Apple or channel mark in marketing pages, onboarding screens, platform UI, entry point buttons or review material. Use the approved Apple supplied assets and the approved wording only.",
+        "key_considerations": "Use the full name whenever practical and document surfaces that require the shorter form. Replace “Apple Business Contact” with “Apple Messages contact” as the default unknown-contact label; if the product uses “user” rather than “contact,” use “Apple Messages user.” Scan localization bundles, templates, agent UI, and review material.\n \n Apple feedback 2026 08 25: sweep marketing sites, client landing pages, agent console chrome, email templates and slide decks for blue bubble glyphs and blue tinted logos, not only for wording. Blue bubble imagery implies iMessage, which is the exact confusion this item exists to prevent.",
+        "reference": "Chapter 2 > 2.1a (full product name 'Apple Messages for Business'; never 'AMB', 'iMessage for Business' or 'Apple Chat')\n Chapter 2 > 2.4 The Experience Review (correct naming as pass/fail signal)",
+        "verification_methods": "Verbal On Apple Policy, Provide Code, UX Testing",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "Verbal On Apple Policy",
+        "Provide Code",
+        "UX Testing"
+      ],
+      "verification_rule": "Verbal On Apple Policy, Provide Code, UX Testing",
+      "ux_required": true,
+      "engagement_state": {
+        "review_notes": "Verbal on Apple Policy plus Provide Code (localized UI/template string scan) plus UX Testing.",
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "Apple feedback 2026 08 25: no blue bubble iconography and no blue logos.\n Apple feedback 2026 08 25: visual sweep added to the naming scan.",
+      "ux_surface": "device",
+      "uid": "MSPR-0068",
+      "lineage": {
+        "from_code": "E.9",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "E.10",
+      "section": "Section E. Policy, consent, conversational design",
+      "csv_row": 76,
+      "definition": {
+        "requirement": "Conversational design umbrella and traceable review coverage",
+        "description": "Preserve greeting, automation/agent identification, stated hours, response-time expectations, clear handoff, opt-in phrasing, triage, response quality, and satisfaction-survey coverage. Treat E.11 and E.12 as separately demonstrable sub-gates rather than allowing this umbrella row alone to turn them green.",
+        "key_considerations": "A broad policy attestation does not satisfy the first-turn or post-resolution device scenarios.\n\nAvoid statements that read as system or SMS notices, such as \"this conversation has been closed\", \"finish conversation\" or \"this chat may be recorded\". The customer ends the conversation, not the business. After Leave Conversation (C.4) the business sends nothing further (C.24). After STOP or a similar opt out (E.5), one short confirmation is allowed and expected, for example \"We have received your request and will not message you again\"; nothing else follows it until the customer writes again.",
+        "reference": "Chapter 2 > 2.4 The Experience Review (conversation flow, agent etiquette, rich element usage; v3.1 checklist)\n Chapter 26 > 26.1 Live Agent Requirement (Conversation Design Standards v3.1)",
+        "verification_methods": "Verbal On Apple Policy, UX Testing",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "Verbal On Apple Policy",
+        "UX Testing"
+      ],
+      "verification_rule": "Verbal On Apple Policy, UX Testing",
+      "ux_required": true,
+      "engagement_state": {
+        "review_notes": "Verbal on Apple Policy plus UX Testing.",
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "v2026.09.28 owner decision: guidance added; requirement unchanged.",
+      "ux_surface": "device",
+      "uid": "MSPR-0069",
+      "lineage": {
+        "from_code": "E.10",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "E.11",
+      "section": "Section E. Policy, consent, conversational design",
+      "csv_row": 77,
+      "definition": {
+        "requirement": "Guided opening with top-use-case Quick Replies",
+        "description": "Promptly greet the user, identify automation when applicable, and pair the opening with a Quick Reply containing up to five brand-specific top intents unless the entry-point intent or initial message already determines routing.",
+        "key_considerations": "Do not ignore a clear user-written intent to force a menu. Keep options current using actual brand demand data. The reported 70% concentration is context only.\n With AI, ensure the triage is much better than a typical Quick Reply message (the same every time). If that is the case, ensure at least the message is changed, or explain to the user that the bot can only do three things (if there are only three things available)",
+        "reference": "Chapter 2 > 2.4 Non-Negotiable Requirements (automated welcome; tap-first design)\n Chapter 26 > 26.1 Live Agent Requirement ('menu' → triage Quick Reply)",
+        "verification_methods": "UX Testing",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "UX Testing"
+      ],
+      "verification_rule": "UX Testing",
+      "ux_required": true,
+      "engagement_state": {
+        "review_notes": "UX Testing across generic and intent-specific entry points.",
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "",
+      "ux_surface": "device",
+      "uid": "MSPR-0070",
+      "lineage": {
+        "from_code": "E.11",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "E.12",
+      "section": "Section E. Policy, consent, conversational design",
+      "csv_row": 78,
+      "definition": {
+        "requirement": "Ask whether more help is needed and offer CSAT after resolution",
+        "description": "After resolving a use case, ask whether anything else is needed and provide relevant Quick Reply options. When the interaction is actually complete, offer CSAT. Use descriptive choices rather than bare 1–5 numbers; use Form Message for multi-question surveys with capability-aware fallback.",
+        "key_considerations": "Do not send CSAT after every FAQ, before resolution, after close/Leave Conversation/opt-out, or from an expired/disallowed state. Do not let a scheduled CSAT bypass the preflight block after close (C.24). Cross-reference D.5 and D.6 for fallback.",
+        "reference": "Chapter 2 > 2.4 The Experience Review (v3.1: CSAT as Quick Reply with descriptive labels, Form for long surveys, offered after the experience)",
+        "verification_methods": "UX Testing, Provide Code",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "UX Testing",
+        "Provide Code"
+      ],
+      "verification_rule": "UX Testing, Provide Code",
+      "ux_required": true,
+      "engagement_state": {
+        "review_notes": "UX Testing on supported and fallback devices plus Provide Code (suppression test).",
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "v2026.09.24: text revised (see CHANGES.md); requirement unchanged.",
+      "ux_surface": "device",
+      "uid": "MSPR-0071",
+      "lineage": {
+        "from_code": "E.12",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "F.1",
+      "section": "Section F. Human escalation under live-agent. Some applicable if a live-agent is not available at all times or is limited and has been approved by Apple. Default deployments must provide a live human agent during business hours.",
+      "csv_row": 80,
+      "definition": {
+        "requirement": "Detect escalation intent",
+        "description": "The bot or its NLU layer must classify both trigger words (AGENT, REPRESENTATIVE, HELP) and free-text intent signalling that the user wants a human (e.g. 'talk to a person', 'this isn't helping').\n Note: A quick reply following unrecognized intent is recommended with \"Talk to a Human, Callback, email or Send us a Message\", see F.2",
+        "key_considerations": "Trigger word matching is deterministic; free-text intent uses the bot's NLU. False negatives are worse than false positives here; err toward escalation.\n Note: This is about intent detection \n Note: Ensure human available hours are expressed when user selects to talk to an agent (E.1), check also E.6",
+        "reference": "Chapter 26 > 26.4 Trigger Words (agent / support / help)\n Chapter 26 > 26.1 Live Agent Requirement (actionable keywords, free-text intent handling)",
+        "verification_methods": "Verbal On Apple Policy",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "Verbal On Apple Policy"
+      ],
+      "verification_rule": "Verbal On Apple Policy",
+      "ux_required": false,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "In Progress"
+      },
+      "change_log": "",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0072",
+      "lineage": {
+        "from_code": "F.1",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "F.2",
+      "section": "Section F. Human escalation under live-agent. Some applicable if a live-agent is not available at all times or is limited and has been approved by Apple. Default deployments must provide a live human agent during business hours.",
+      "csv_row": 81,
+      "definition": {
+        "requirement": "Present a callback or email choice",
+        "description": "On escalation, present the user with a structured choice between a callback request and an email reply (collected via Form Message).\n If the user decides to send a message, the human agent can reply saying the message was acknowledged and a response will be given the next business day if the message was sent out of business hours. Then the human agent will reply to that message in the channel",
+        "key_considerations": "This is especially relevant if there is no human support available over messages: the user is presented with alternative options like a call, or sending an email over the channel (messages) with the goal of receiving a response in the channel back from the email response from the human on the other side.\n Use Quick Reply for the binary choice; collect the supporting details (phone number, email, message) via Form Message with fallback to List Picker or plain text on older devices. The in channel handoff must be as seamless as possible; where a live agent is not available, the bot assists the user in composing and sending an email to the brand from within the conversation.\n Note, this is about options presented. \n Email can be optional if no 7x24 is present and email can be created on the channel and ideally received as a message back when agent is available",
+        "reference": "Not covered in Integration Guide — the structured callback/email choice is MSP escalation design; only the general escalation duty is specified (26.1).",
+        "verification_methods": "UX Testing",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "UX Testing"
+      ],
+      "verification_rule": "UX Testing",
+      "ux_required": true,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "",
+      "ux_surface": "agent_console",
+      "uid": "MSPR-0073",
+      "lineage": {
+        "from_code": "F.2",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "F.3",
+      "section": "Section F. Human escalation under live-agent. Some applicable if a live-agent is not available at all times or is limited and has been approved by Apple. Default deployments must provide a live human agent during business hours.",
+      "csv_row": 82,
+      "definition": {
+        "requirement": "Acknowledge the choice in the AMB thread",
+        "description": "After the user selects callback or email, send a confirmation message in the AMB thread stating what happens next and when.",
+        "key_considerations": "Be specific about ETA (e.g. 'a team member will call you within 2 business hours'). Vague acknowledgements are flagged by Apple reviewers.",
+        "reference": "Not covered in Integration Guide — the acknowledgement message is conversational design, not guide protocol; general guidance sits in 26.1.",
+        "verification_methods": "UX Testing",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "UX Testing"
+      ],
+      "verification_rule": "UX Testing",
+      "ux_required": true,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "",
+      "ux_surface": "device",
+      "uid": "MSPR-0074",
+      "lineage": {
+        "from_code": "F.3",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "F.4",
+      "section": "Section F. Human escalation under live-agent. Some applicable if a live-agent is not available at all times or is limited and has been approved by Apple. Default deployments must provide a live human agent during business hours.",
+      "csv_row": 83,
+      "definition": {
+        "requirement": "Handle unclassified free text via clarification",
+        "description": "If the bot cannot classify a free-text turn, ask a single clarification question. If the second turn also fails to classify, escalate per F.2 rather than looping further.",
+        "key_considerations": "One clarification turn maximum before escalation. Looping clarifications frustrate users and surface as a review finding.",
+        "reference": "Chapter 26 > 26.1 Live Agent Requirement (v3.1: unhandled-intent reply and re-offer of options) (verify section — the two-strike escalation rule itself is MSP design)",
+        "verification_methods": "UX Testing",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "UX Testing"
+      ],
+      "verification_rule": "UX Testing",
+      "ux_required": true,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "",
+      "ux_surface": "device",
+      "uid": "MSPR-0075",
+      "lineage": {
+        "from_code": "F.4",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "F.5",
+      "section": "Section F. Human escalation under live-agent. Some applicable if a live-agent is not available at all times or is limited and has been approved by Apple. Default deployments must provide a live human agent during business hours.",
+      "csv_row": 84,
+      "definition": {
+        "requirement": "Out-of-hours behaviour",
+        "description": "For escalations received outside business hours, allow the user to message the human agents and queue the message to be replied to when the agent is back; also queue the callback for the next business day and queue the email-via-form for review the next business day. State the timing explicitly in the thread.",
+        "key_considerations": "Both paths share the same out-of-hours rule. Do not pretend to be available; do not silently drop the request.",
+        "reference": "Chapter 2 > 2.4 The Experience Review (out-of-hours automated message requirement)\n Note: the queue-and-reply-later mechanics are platform design, not guide protocol.",
+        "verification_methods": "UX Testing",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "UX Testing"
+      ],
+      "verification_rule": "UX Testing",
+      "ux_required": true,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "In Progress"
+      },
+      "change_log": "",
+      "ux_surface": "both",
+      "uid": "MSPR-0076",
+      "lineage": {
+        "from_code": "F.5",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "F.6",
+      "section": "Section F. Human escalation under live-agent. Some applicable if a live-agent is not available at all times or is limited and has been approved by Apple. Default deployments must provide a live human agent during business hours.",
+      "csv_row": 85,
+      "definition": {
+        "requirement": "Optional email reply threading",
+        "description": "Optional: when a human responds to the email-via-form request, thread the reply back into the AMB conversation so the user sees continuity in one surface.",
+        "key_considerations": "Not required by Apple, but materially improves the user experience when permitted by the brand's email system. If implemented, treat each emailed turn as a regular outbound AMB message subject to all standard rules.",
+        "reference": "Not covered in Integration Guide — email-reply threading into the AMB conversation is an optional MSP platform feature.",
+        "verification_methods": "UX Testing",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "UX Testing"
+      ],
+      "verification_rule": "UX Testing",
+      "ux_required": true,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "",
+      "ux_surface": "device",
+      "uid": "MSPR-0077",
+      "lineage": {
+        "from_code": "F.6",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "G.1",
+      "section": "Section G. Integration Review submission pack",
+      "csv_row": 87,
+      "definition": {
+        "requirement": "Pre-review preconditions",
+        "description": "Before booking Integration Review, all required features (Section C) are implemented, a sandbox brand is provisioned, the demo script is rehearsed, and both agent and bot are operational.",
+        "key_considerations": "Apple will reject incomplete submissions outright. Run a full internal dress rehearsal first, including a deliberate device-capability fallback.",
+        "reference": "Chapter 2 > 2.4 The Experience Review, Apple's Pre-Launch Gate\n Chapter 4 > 4.4 The Experience Review as a Gate Between Staging and Production\n Chapter 4 > 4.6 Operational Checklist Before Going Live",
+        "verification_methods": "Verbal On Apple Policy",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "Verbal On Apple Policy"
+      ],
+      "verification_rule": "Verbal On Apple Policy",
+      "ux_required": false,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0078",
+      "lineage": {
+        "from_code": "G.1",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "G.2",
+      "section": "Section G. Integration Review submission pack",
+      "csv_row": 88,
+      "definition": {
+        "requirement": "Confirm platform capability requirements",
+        "description": "Verify your platform meets every item in Apple's capability matrix (bot builder, message templates, attachment handling, capability detection, agent console, etc.) before booking the Integration Review demo.",
+        "key_considerations": "Note: Go to market plan can come in parallel with Integration Review or during Experience Review (Experience Review is out of the scope of this document)",
+        "reference": "Chapter 2 > 2.2 What Apple Expects from an Approved MSP",
+        "verification_methods": "3 Way Meeting",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "3 Way Meeting"
+      ],
+      "verification_rule": "3 Way Meeting",
+      "ux_required": false,
+      "engagement_state": {
+        "review_notes": "This is required but not needed for the review",
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0108",
+      "lineage": {
+        "from_code": "G.2",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "G.3",
+      "section": "Section G. Integration Review submission pack",
+      "csv_row": 89,
+      "definition": {
+        "requirement": "Set expectations before journey implementation and review",
+        "description": "Before Integration Review, coach all the involved team (this will be applicable to every brand consequently) on Apple Messages for Business interaction design, consent, opt-out, rich features, response behavior, naming, and review expectations, explicitly contrasting material differences from WhatsApp and RCS. Resolve known journey gaps before recording or live review.",
+        "key_considerations": "Record acknowledgement, decisions, and unresolved exceptions. Coaching content follows A.5 embargo and E.9 naming rules. This is a readiness/program control, not an Apple REST obligation.",
+        "reference": "Not covered in Integration Guide — team coaching and expectation-setting are onboarding process steps, not guide protocol.",
+        "verification_methods": "Verbal On Apple Policy, 3 Way Meeting",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "Verbal On Apple Policy",
+        "3 Way Meeting"
+      ],
+      "verification_rule": "Verbal On Apple Policy, 3 Way Meeting",
+      "ux_required": false,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0109",
+      "lineage": {
+        "from_code": "G.3",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "G.4",
+      "section": "Section G. Integration Review submission pack",
+      "csv_row": 90,
+      "definition": {
+        "requirement": "Five non-negotiable UX requirements",
+        "description": "The submission must demonstrate the Integration Review floor per guide §2.4: (1) human agent escalation — a live agent reachable when a customer types \"help\", with an off-hours automated message stating when a human will respond (or the exempted callback/email path where Apple has granted a live-agent exemption); (2) automated welcome message plus off-hours automated response; (3) Rich Links for every URL from every agent and every bot — a plain \"Tap to Load Preview\" URL is an explicit rejection criterion; (4) no re-requesting information the customer already provided; (5) tap-first design — interactive components (Quick Reply, List Picker) prioritised over free text wherever practical. Opt-out, opt-in consent, PII handling and capability-aware fallback remain required and are tracked in E.5, E.4, E.7 and D.6 respectively.",
+        "key_considerations": "These are tested every review. Skipping any one is the most common failure mode.",
+        "reference": "Chapter 2 > 2.4 Non-Negotiable Requirements — the Experience Review floor per §2.4 and the v3.1 self-evaluation checklist (Messaging Advisory synthesis of Apple's written requirements; not an Apple-published list of five). Per-item sources: (1) escalation — AMB_Layer2_Canonical_v7_0 conversation best practices; AMB_Canonical_ExternalSources_v1 (live agent required for escalation testing); (2) welcome/off-hours — addendum 2026-07-25-use-case-experience-best-practices (Apple verbatim); (3) Rich Links — same addendum + addendum 2026-07-25-experience-review-checklist-v3.1 ('bare URLs' fail signal); (4) no re-requesting — canonical v7.0 'Don't repeat previously provided information', via addendum 2026-07-25-collect-details-before-escalation; (5) tap-first — Conversation Design Standards v3.1 'Tap Friendly' principle; v3.1 fail signal 'text-only experiences that don't leverage platform features'.",
+        "verification_methods": "Verbal On Apple Policy",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "Verbal On Apple Policy"
+      ],
+      "verification_rule": "Verbal On Apple Policy",
+      "ux_required": false,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0079",
+      "lineage": {
+        "from_code": "G.4",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "G.5",
+      "section": "Section G. Integration Review submission pack",
+      "csv_row": 91,
+      "definition": {
+        "requirement": "Screen recording, three dimensions",
+        "description": "Record three end to end flows: bot flow (entry point through resolution or escalation), agent flow (entry point through agent resolution), and a capability flow that shows the same use case on a device that supports the feature and on a device that does not, demonstrating the fallback to Quick Reply, List Picker, Time Picker, or plain text in place of Form Message.",
+        "key_considerations": "Each recording must include the entry point and a Leave Conversation. Each must be one continuous take, not edited.",
+        "reference": "Chapter 2 > 2.4 The Experience Review (three review dimensions; What the Recording Must Demonstrate)",
+        "verification_methods": "Verbal On Apple Policy",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "Verbal On Apple Policy"
+      ],
+      "verification_rule": "Verbal On Apple Policy",
+      "ux_required": false,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0080",
+      "lineage": {
+        "from_code": "G.5",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "G.6",
+      "section": "Section G. Integration Review submission pack",
+      "csv_row": 92,
+      "definition": {
+        "requirement": "Recording production method",
+        "description": "Use Apple-recommended recording methods (QuickTime mirroring from iOS, or direct iOS screen recording). Native resolution. No edits. Timestamps documented.",
+        "key_considerations": "Edited recordings are rejected. If two takes are needed, submit the second take in full, not a stitched composite. Ensure it is QuickTime, to demonstrate e.g. an Apple Pay full integration on screen.\n Note: Not using QuickTime will prevent seeing an Apple Pay payment interaction on screen, for example",
+        "reference": "Not covered in Integration Guide — recording production method (QuickTime mirroring, native resolution, no edits) lives in the Onboarding docs.",
+        "verification_methods": "Verbal On Apple Policy",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "Verbal On Apple Policy"
+      ],
+      "verification_rule": "Verbal On Apple Policy",
+      "ux_required": false,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0081",
+      "lineage": {
+        "from_code": "G.6",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "G.7",
+      "section": "Section G. Integration Review submission pack",
+      "csv_row": 93,
+      "definition": {
+        "requirement": "Submit and iterate",
+        "description": "Submit the video pack to Messaging Advisory. Expect at least one iteration cycle with MADV and then with the regional AMB team. Maybe two.",
+        "key_considerations": "Plan for the iteration. Allocate calendar time for review responses; reviewers usually return comments within a defined SLA but the back-and-forth can span weeks.",
+        "reference": "Chapter 2 > 2.4 The Experience Review (1–3 review rounds; resubmission with change summary)\n Chapter 2 > 2.1a (post-approval onboarding email, amb-experience alias)",
+        "verification_methods": "Verbal On Apple Policy",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "Verbal On Apple Policy"
+      ],
+      "verification_rule": "Verbal On Apple Policy",
+      "ux_required": false,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0082",
+      "lineage": {
+        "from_code": "G.7",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "H.1",
+      "section": "Section H. Response codes, retry, timeouts",
+      "csv_row": 95,
+      "definition": {
+        "requirement": "Response code taxonomy",
+        "description": "Implement and respect the response code taxonomy: 2xx success, 4xx client errors (including 410 Gone with two distinct semantics on organic AMB vs Invitations), and 5xx server errors with a documented retry policy.",
+        "key_considerations": "Only 5xx is retried; every 4xx is final for that message (Apple source: AMB canonical v7.0 L397).\n The published /message codes are 200, 400, 401, 403, 404, 410, 500; Apple documents no 429 for AMB, so any rate-limit handling is an MSP-side inference (see DR-15). On organic AMB, 410 means the user closed the conversation; 'no longer reachable' is 404. On Invitations, 410 means a missing or incorrect message-type header. Treat these as distinct states in the MSP data model",
+        "reference": "Chapter 24: Response Codes and Error Handling (incl. 404 fallback expectation, 24.1 Retry Logic, 24.2 Handling 410)\n Chapter 22 > 22.7 Response Codes for Invitation Messages",
+        "verification_methods": "PostMan",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "PostMan"
+      ],
+      "verification_rule": "PostMan",
+      "ux_required": false,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "v2026.09.24: text revised (see CHANGES.md); requirement unchanged.",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0084",
+      "lineage": {
+        "from_code": "H.1",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "H.2",
+      "section": "Section H. Response codes, retry, timeouts",
+      "csv_row": 96,
+      "definition": {
+        "requirement": "Timeout and TTL matrix",
+        "description": "Maintain a matrix of timeouts and TTLs by message type and flow stage: typing indicator 60 seconds, Apple Pay merchant session per the session's expires At value (Apple publishes no fixed duration; do not hardcode 5 minutes)., attachment URL TTLs, ratchet between Apple, MSP, and CDN.",
+        "key_considerations": "Mismatches between MSP timeouts and Apple's published values are a common Integration Review finding. Cite the spec values, do not improvise.",
+        "reference": "Chapter 28 > 28.2 Timeouts\n Chapter 11 > 11.3 Timeout (typing indicator 60 s)\n Chapter 18 > 18.3 Payment Endpoint Timeouts",
+        "verification_methods": "Provide Code",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "Provide Code"
+      ],
+      "verification_rule": "Provide Code",
+      "ux_required": false,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0085",
+      "lineage": {
+        "from_code": "H.2",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "H.3",
+      "section": "Section H. Response codes, retry, timeouts",
+      "csv_row": 97,
+      "definition": {
+        "requirement": "Reliable, ordered, signed and revocable partner webhook delivery",
+        "description": "Partner webhook events are created atomically with the business transaction and delivered under a documented at-least-once contract; each event carries a stable webhook-id, timestamp and verifiable Standard Webhooks signature; deliveries preserve per-conversation ordering, retry under a bounded policy, resist concurrent/stale workers via leases and fencing, support consumer dedup on webhook-id, and stop after endpoint deactivation.",
+        "key_considerations": "At least once, not exactly once. Outbox atomic with the journal/state transition; webhook-id stable across retries; sign the exact raw body; document timestamp tolerance + secret rotation; only documented 2xx acks; document retryable responses/timeout/max attempts/terminal state; ordering within a conversation while unrelated conversations progress; deactivation prevents queued events from being claimed or sent; observable attempt/next-retry/last-status/terminal. MSP-platform reliability control; Apple context analogous only.",
+        "reference": "Not covered in Integration Guide — partner-webhook delivery is a platform (team-lane) contract, not Apple protocol.",
+        "verification_methods": "Provide Code",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "Provide Code"
+      ],
+      "verification_rule": "Provide Code",
+      "ux_required": false,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0086",
+      "lineage": {
+        "from_code": "H.3",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "H.4",
+      "section": "Section H. Response codes, retry, timeouts",
+      "csv_row": 98,
+      "definition": {
+        "requirement": "Provisional tracking and safe handling of the reported 365-day reachability window",
+        "description": "Track the last qualifying inbound per conversation and surface approaching or observed expiry internally to authorized brand operators. The reported 365-day duration is provisional until direct authority is resolved. A qualifying inbound may reset the window, but MUST NOT reset opt-out or campaign consent.",
+        "key_considerations": "Do not invent an Apple error code, hard-code an unverified duration, or use the timer to authorize outbound. No arbitrary pre-expiry re-engagement is allowed. Outreach is permitted only through an approved, consented Invitation or another channel with independent consent. Define qualifying events, clock skew, and precedence of consent/close over reachability.",
+        "reference": "Not covered in Integration Guide — the 365-day reachability window is provisional and does not appear in the guide (not even in Chapter 29).",
+        "verification_methods": "Provide Code, Verbal On Apple Policy",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "Provide Code",
+        "Verbal On Apple Policy"
+      ],
+      "verification_rule": "Provide Code, Verbal On Apple Policy",
+      "ux_required": false,
+      "engagement_state": {
+        "review_notes": "Provide Code (injectable-clock boundary, reset, skew, returned-error, no-outbound, and consent-precedence tests) plus Verbal on Apple Policy.",
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0087",
+      "lineage": {
+        "from_code": "H.4",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "I.1",
+      "section": "Section I. Security, privacy, constraints",
+      "csv_row": 100,
+      "definition": {
+        "requirement": "Opaque ID handling",
+        "description": "sourceId and destinationId are opaque tokens. Never persist them alongside personal identifiers outside of an authenticated linkage. Never use them as join keys against PII tables.",
+        "key_considerations": "Stable per user-brand pair, not reversible. Account linking is via the channel settings landing page, not via id parsing. Logging fields and analytics pipelines must respect this.",
+        "reference": "Chapter 27 > 27.1 The Opaque ID\n Chapter 29: Unresolved Gaps (Opaque ID technical spec: behavioural envelope confirmed, internals unpublished)",
+        "verification_methods": "Verbal On Apple Policy",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "Verbal On Apple Policy"
+      ],
+      "verification_rule": "Verbal On Apple Policy",
+      "ux_required": false,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0088",
+      "lineage": {
+        "from_code": "I.1",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "I.2",
+      "section": "Section I. Security, privacy, constraints",
+      "csv_row": 101,
+      "definition": {
+        "requirement": "Encryption posture",
+        "description": "TLS 1.2 or later for all in-transit traffic. Messaging API secret stored in a secrets manager, never in source, logs, or environment files committed to a repository.",
+        "key_considerations": "Apply standard secret hygiene: rotation policy, access auditing, environment separation. Treat AMB credentials with the same posture as production payment credentials.",
+        "reference": "Chapter 27 > 27.2 Encryption Model (TLS; SOC 2 / HIPAA notes)\n Chapter 3 > 3.3 Key Management (secret in a secrets manager)",
+        "verification_methods": "PostMan",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "PostMan"
+      ],
+      "verification_rule": "PostMan",
+      "ux_required": false,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0089",
+      "lineage": {
+        "from_code": "I.2",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "I.3",
+      "section": "Section I. Security, privacy, constraints",
+      "csv_row": 102,
+      "definition": {
+        "requirement": "Attachment crypto",
+        "description": "Implement AES-CTR per-attachment encryption with the key carried in the message body, not in HTTP headers. Decrypt inbound attachments on receipt; encrypt outbound before /preUpload.",
+        "key_considerations": "Use the self-test vectors in the spec to verify the crypto end to end. Bugs here typically only show up on a specific file size or content type and are easy to miss without targeted tests.",
+        "reference": "Chapter 10 > 10.3 Uploading Attachments (Outbound)\n Chapter 10 > 10.4 Downloading Attachments (Inbound)",
+        "verification_methods": "Provide Code",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "Provide Code"
+      ],
+      "verification_rule": "Provide Code",
+      "ux_required": false,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0090",
+      "lineage": {
+        "from_code": "I.3",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "I.4",
+      "section": "Section I. Security, privacy, constraints",
+      "csv_row": 103,
+      "definition": {
+        "requirement": "Message history not stored at Apple",
+        "description": "Apple does not retain conversation history. The MSP is the system of record. Reflect this in brand-facing documentation and in any data-retention or compliance statements.",
+        "key_considerations": "Apple's privacy posture is that the conversation lives on the user's device and on the MSP's systems, not on Apple's. The brand and MSP own retention policy. Note specifically that any administrative-access requirement (e.g. FERPA in education, or other regulated-sector administrator-access regimes) is the MSP's and brand's responsibility to satisfy, not Apple's.",
+        "reference": "Chapter 27 > 27.3 Message History",
+        "verification_methods": "Verbal On Apple Policy, Provide Code",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "Verbal On Apple Policy",
+        "Provide Code"
+      ],
+      "verification_rule": "Verbal On Apple Policy, Provide Code",
+      "ux_required": false,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "In Progress"
+      },
+      "change_log": "",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0091",
+      "lineage": {
+        "from_code": "I.4",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "I.5",
+      "section": "Section I. Security, privacy, constraints",
+      "csv_row": 104,
+      "definition": {
+        "requirement": "Payload size constraints",
+        "description": "Inline interactiveData above 10 KB is replaced by interactiveDataRef, fetched and decoded through /decodePayload. Each attachment must be smaller than 100 MB (Apple source: AMB canonical v7.0 L1047). The guide publishes no hard limit on the text message body.",
+        "key_considerations": "10 KB is the size at which Apple sends interactiveDataRef instead of inline interactiveData (for example most List Picker replies with images), not a cap on what the MSP sends; when an outbound interactive JSON is over 10 KB, Apple's 200 response carries asset references for reuse (Apple source: AMB canonical v7.0 L580, L995, L1813). The 100 MB attachment ceiling is hard (a file must be smaller than 100 MB); for larger files use an external delivery surface linked through a rich link. Any platform limit on the text body or on inflated inbound bodies is a configured default, not Apple's.",
+        "reference": "Chapter 28 > 28.1 Payload and Size Limits\n Chapter 6 > 6.2 Handling interactiveDataRef (Payloads Over 10 KB)",
+        "verification_methods": "PostMan",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "PostMan"
+      ],
+      "verification_rule": "PostMan",
+      "ux_required": false,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "v2026.09.24: text revised (see CHANGES.md); requirement unchanged.",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0092",
+      "lineage": {
+        "from_code": "I.5",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "I.6",
+      "section": "Section I. Security, privacy, constraints",
+      "csv_row": 105,
+      "definition": {
+        "requirement": "Partner delivery tenant isolation and secure destination handling",
+        "description": "Every partner webhook endpoint, subscription, outbox event, retry and delivery is owned by exactly one brand; events are never delivered to, queried by, or replayed through another brand's endpoint. The same isolation applies to the SSE firehose and journal-read APIs. Production destinations use HTTPS and are protected against SSRF, DNS rebinding and unsafe redirects. Apple attachment URLs, keys and signatures are not exposed in partner payloads.",
+        "key_considerations": "Persist non-null brand_id on webhook endpoints and outbox; derive the event brand in the same transaction that writes the outbox row; never take brand from a partner-controlled field; filter endpoint selection, claims, retries, replay and admin reads by brand; RLS backstops both tables. Signing authenticates a payload, it does not establish tenant isolation. Journal/log secret-minimization is broader than webhooks (coordinate with I.3). MSP-platform security control; not Apple-gated.",
+        "reference": "Not covered in Integration Guide — tenant isolation for partner webhook delivery is a platform rule, not Apple protocol.",
+        "verification_methods": "Provide Code",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "Provide Code"
+      ],
+      "verification_rule": "Provide Code",
+      "ux_required": false,
+      "engagement_state": {
+        "review_notes": "Added 2026-07-29 by MA. MA_PROGRAM / PLATFORM_SAFETY, not Apple-normative. Two-brand + adversarial SSRF test required for green.",
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0093",
+      "lineage": {
+        "from_code": "I.6",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "J.1",
+      "section": "Section J. Important checks",
+      "csv_row": 107,
+      "definition": {
+        "requirement": "Confirm platform capability requirements",
+        "description": "Pre-launch verification gate. Walk through every Phase 1 platform capability item and confirm it is implemented, tested, and demonstrable against the current build state.",
+        "key_considerations": "Carry-forward of the platform-capability detailed note. Phase 1 has a fixed capability checklist that the MSP's platform must support, including: a no-code bot builder, message template library, attachment ingestion and delivery, capability-list parsing and gating, an agent console with capability lock, opt-in/opt-out lifecycle management, and the full set of required features in Section C. Re-verify just before launch, not only at Phase 1 demo.",
+        "reference": "Chapter 2 > 2.2 What Apple Expects from an Approved MSP\n Chapter 4 > 4.6 Operational Checklist Before Going Live",
+        "verification_methods": "3 Way Meeting",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "3 Way Meeting"
+      ],
+      "verification_rule": "3 Way Meeting",
+      "ux_required": false,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "In Progress"
+      },
+      "change_log": "",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0094",
+      "lineage": {
+        "from_code": "J.1",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "J.2",
+      "section": "Section J. Important checks",
+      "csv_row": 108,
+      "definition": {
+        "requirement": "Plan multi-day approval dependencies (final gate)",
+        "description": "Final pre-launch verification gate confirming all multi-day items are complete: Apple Developer account enrolment, Apple Pay Merchant ID, Payment Processing Certificate, OAuth endpoint approval, and App Extension demo.",
+        "key_considerations": "Intentional duplicate of A.4. A.4 is the planning gate (do these have lead time?); J.2 is the launch gate (are they actually done?). Both are needed; do not collapse them.",
+        "reference": "Chapter 2 > 2.1a (account-review latency; plan schedules with it)\n Chapter 18 > 18.1 Prerequisites\n Chapter 20 > 20.1 Requirements for the New Flow",
+        "verification_methods": "3 Way Meeting",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "3 Way Meeting"
+      ],
+      "verification_rule": "3 Way Meeting",
+      "ux_required": false,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "In Progress"
+      },
+      "change_log": "",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0095",
+      "lineage": {
+        "from_code": "J.2",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "J.3",
+      "section": "Section J. Important checks",
+      "csv_row": 109,
+      "definition": {
+        "requirement": "The MSP connection in ABR is enabled by Apple manually, not automatically",
+        "description": "Once all approvals are granted, Apple moves the test accounts (the MSP-selected one) into Commercial non-public.",
+        "key_considerations": "Note: once Integration Review is approved, Apple moves the MSP into Commercial Public and the test brand into Commercial",
+        "reference": "Chapter 2 > 2.1a (migration is a request, not automatic; Apple converts the release-candidate test account to production in place; Commercial Public conversion is a settings change on Apple's side)",
+        "verification_methods": "N/A",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "N/A"
+      ],
+      "verification_rule": "N/A",
+      "ux_required": false,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "Verified"
+      },
+      "change_log": "",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0096",
+      "lineage": {
+        "from_code": "J.3",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "J.4",
+      "section": "Section J. Important checks",
+      "csv_row": 110,
+      "definition": {
+        "requirement": "For the Integration Review, share the videos with Messaging Advisory first",
+        "description": "Messaging Advisory will upload videos for Apple async reviews first, and will receive feedback from previous internal reviews. Then live demo.",
+        "key_considerations": "This is a process that requires a lot of discipline as the goal is to ensure you as an MSP get clearly what Apple really wants from you",
+        "reference": "Not covered in Integration Guide — Box upload and Messaging Advisory video-handling mechanics are Onboarding-process steps not in the guide.",
+        "verification_methods": "N/A",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "N/A"
+      ],
+      "verification_rule": "N/A",
+      "ux_required": false,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "Verified"
+      },
+      "change_log": "",
+      "ux_surface": "not_applicable",
+      "uid": "MSPR-0112",
+      "lineage": {
+        "from_code": "J.4",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "J.5",
+      "section": "Section J. Important checks",
+      "csv_row": 111,
+      "definition": {
+        "requirement": "Demonstrate the full Client Landing Page connection journey",
+        "description": "From the live Connect entry point, demonstrate the applicable terms step, authentication, business/account linking, and the explicit successful-connection confirmation. C.20 and C.21 own implementation; J.5 is the final review evidence gate.",
+        "key_considerations": "Keep a continuous capture and correct product naming. A test account is acceptable",
+        "reference": "Chapter 25 > 25.2 The Landing Page (Connect handoff: GET parameters, Business ID binding, HTTPS, official assets, full nomenclature — checked in Integration Review)\n Chapter 2 > 2.4 The Experience Review",
+        "verification_methods": "UX Testing",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "UX Testing"
+      ],
+      "verification_rule": "UX Testing",
+      "ux_required": true,
+      "engagement_state": {
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "",
+      "ux_surface": "device",
+      "uid": "MSPR-0098",
+      "lineage": {
+        "from_code": "J.5",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    },
+    {
+      "item_code": "K.1",
+      "section": "Section K. MSP omnichannel controls (not Apple protocol requirements)",
+      "csv_row": 113,
+      "definition": {
+        "requirement": "Configurable fallback to registered RCS, SMS, or both when the destination is not an Apple device",
+        "description": "When the intended recipient does not use an Apple device and therefore cannot receive an Apple Messages for Business Invitation or conversation, the MSP may use the brand's registered RCS channel, SMS channel, or both only when each selected channel has its own valid consent and the content can be represented safely. Apple recommends having fallback capability but expresses no preference for RCS, SMS, or their order.",
+        "key_considerations": "This is destination/channel fallback, not Section D Apple device-feature capability fallback and not a retry of an Apple payload. Never use it to bypass decline, opt-out, Leave Conversation, close, or user-preference suppression. Never carry Apple-specific Authentication, Apple Pay, Form, attachment keys/URLs, or secure PII flows to another channel. If both RCS and SMS are configured, define order, wait time, promotion, late-success deduplication, per-channel audit, and opt-out precedence.",
+        "reference": "Not covered in Integration Guide — RCS/SMS fallback is an MSP omnichannel control outside the Apple protocol (the guide mentions RCS only descriptively).",
+        "verification_methods": "UX Testing, Provide Code",
+        "verification_rule": ""
+      },
+      "verification_methods": [
+        "UX Testing",
+        "Provide Code"
+      ],
+      "verification_rule": "UX Testing, Provide Code",
+      "ux_required": true,
+      "engagement_state": {
+        "review_notes": "Provide Code (cross-channel consent, negative eligibility, content-class, timeout, and late-success deduplication tests) plus policy/legal review.",
+        "msp_feedback": "To Do",
+        "build_status": "To Do",
+        "demo_video_readiness": "To Do",
+        "video_status": "To Do"
+      },
+      "change_log": "",
+      "ux_surface": "device",
+      "uid": "MSPR-0099",
+      "lineage": {
+        "from_code": "K.1",
+        "from_version": "v2026.09.28",
+        "relation": "same"
+      }
+    }
+  ]
+}

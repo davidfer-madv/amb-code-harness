@@ -47,8 +47,8 @@ See [AGENTS.md](AGENTS.md) and [policy/isolation-rules.md](policy/isolation-rule
 - `sha256sum`
 - OpenSpec CLI 1.13.x (`npm install -g @fission-ai/openspec@1.13.2`)
 - Codex, Claude Code or another coding agent capable of repository analysis
-- Access to the approved canonical checklist JSON; historical examples in `checklists/` are not a
-  substitute for the current authority
+- Access to the approved checklist JSON in `AMB-canonical`; the versioned copy under
+  `checklists/msp-conformance/` is a checksum-verified fallback, not the normal authority source
 
 Run the local tool check once:
 
@@ -128,8 +128,8 @@ The validator prevents `PASS` when a normalized `ALL(...)` expression has an unc
 ```text
 AGENTS.md             normative instructions for coding agents
 bin/                  snapshot, manifest, validation, packaging and readiness tools
-canonical/            authority-pointer documentation; canonical content remains external
-checklists/           historical/sample materials, never an implicit current authority
+canonical/            authority-pointer documentation; canonical claim closure remains external
+checklists/           historical material plus explicitly versioned, checksum-verified fallbacks
 openspec/             proposals, designs, delta specs and implementation tasks
 playbook/             standing audit method and operator runbook
 policy/               non-negotiable isolation rules
